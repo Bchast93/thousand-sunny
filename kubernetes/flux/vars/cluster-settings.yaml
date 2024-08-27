@@ -5,4 +5,8 @@ metadata:
   name: cluster-settings
   namespace: flux-system
 data:
-  SETTING_EXAMPLE: Global settings for your cluster go in this file, this file is NOT encrypted
+  TIMEZONE: US/Central
+  SVC_POSTGRES_ADDR: 10.100.151.35
+  CLUSTER_CIDR: 10.69.0.0/16
+  SERVICE_CIDR: 10.96.0.0/16
+  LAN_CIDR: 10.100.150.0/24
