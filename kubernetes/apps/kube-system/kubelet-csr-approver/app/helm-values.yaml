@@ -1,0 +1,3 @@
+---
+providerRegex: ^(luffy|zoro|sanji)$
+bypassDnsResolution: true
