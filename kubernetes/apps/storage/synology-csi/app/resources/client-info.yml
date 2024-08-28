@@ -1,0 +1,7 @@
+---
+clients:
+  - host: ${SYN_HOST}
+    port: ${SYN_PORT}
+    https: false
+    username: "{{ .SYN_USER }}"
+    password: "{{ .SYN_PASS }}"
