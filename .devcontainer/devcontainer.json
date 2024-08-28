@@ -3,7 +3,8 @@
   "name": "Flux Cluster Template",
   "image": "ghcr.io/onedr0p/cluster-template/devcontainer:base",
   "postCreateCommand": {
-    "setup": "bash ${containerWorkspaceFolder}/.devcontainer/postCreateCommand.sh"
+    "setup": "bash ${containerWorkspaceFolder}/.devcontainer/postCreateCommand.sh",
+    "krew": "bash ${containerWorkspaceFolder}/.devcontainer/install_krew.sh"
   },
   "postStartCommand": {
     "git": "git config --global --add safe.directory ${containerWorkspaceFolder}"
