@@ -38,22 +38,6 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-ro
-spec:
-  type: ClusterIP
-  ports:
-    - name: postgres
-      port: 5432
-      protocol: TCP
-      targetPort: 5432
-  selector:
-    cnpg.io/cluster: postgres
-    role: replica
----
-# yaml-language-server: $schema=https://kubernetesjsonschema.dev/v1.18.1-standalone-strict/service-v1.json
-apiVersion: v1
-kind: Service
-metadata:
   name: postgres-rw
 spec:
   type: ClusterIP
