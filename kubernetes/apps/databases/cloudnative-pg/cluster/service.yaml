@@ -22,7 +22,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-r
+  name: postgres-r1
 spec:
   type: ClusterIP
   ports:
@@ -38,7 +38,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-rw
+  name: postgres-rw1
 spec:
   type: ClusterIP
   ports:
