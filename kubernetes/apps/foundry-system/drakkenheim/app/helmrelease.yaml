@@ -151,11 +151,11 @@ spec:
         existingClaim: drakkenheim
         globalMounts:
           - path: /data
-        advancedMounts:
-          foundryvtt:
-            data:
-              - path: /data
-            filebrowser:
-              # - path: /db
-              #   subPath: filebrowser
-              - path: /data
+        # advancedMounts:
+        #   foundryvtt:
+        #     data:
+        #       - path: /data
+        #     filebrowser:
+        #       - path: /db
+        #         subPath: filebrowser
+        #       - path: /data
