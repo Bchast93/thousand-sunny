@@ -68,17 +68,17 @@ spec:
                 cpu: 10m
               limits:
                 memory: 4Gi
-          # filebrowser:
-          #   image:
-          #     repository: docker.io/filebrowser/filebrowser
-          #     tag: v2.30.0@sha256:862a8f4f4829cb2747ced869aea8593204bbc718c92f0f11c97e7b669a54b53d
-          #   args: ["-d", "/db/database.db"]
-          #   env:
-          #     TZ: ${TIMEZONE}
-              # FB_DATABASE: /config/filebrowser.db
-              # FB_ROOT: /eros
-              # FB_LOG: stdout
-              # FB_NOAUTH: true
+          filebrowser:
+            image:
+              repository: docker.io/filebrowser/filebrowser
+              tag: v2.30.0@sha256:862a8f4f4829cb2747ced869aea8593204bbc718c92f0f11c97e7b669a54b53d
+            args: ["-d", "/db/database.db"]
+            env:
+              TZ: ${TIMEZONE}
+              FB_DATABASE: /config/filebrowser.db
+              FB_ROOT: /data
+              FB_LOG: stdout
+              FB_NOAUTH: true
             # probes:
             #   liveness: &probes
             #     enabled: true
@@ -117,12 +117,12 @@ spec:
         ports:
           http:
             port: 30000
-      # filebrowser:
-      #   controller: foundryvtt
-      #   primary: false
-      #   ports:
-      #     fbhttp:
-      #       port: 80
+      filebrowser:
+        controller: drakkenheim
+        primary: false
+        ports:
+          fbhttp:
+            port: 80
     ingress:
       app:
         className: external
@@ -140,22 +140,22 @@ spec:
                 service:
                   identifier: app
                   port: http
-          # - host: "filebrowser.${SECRET_DOMAIN}"
-          #   paths:
-          #     - path: /
-          #       service:
-          #         identifier: filebrowser
-          #         port: fbhttp
+          - host: "filebrowser.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  identifier: filebrowser
+                  port: fbhttp
     persistence:
       data:
         existingClaim: drakkenheim
         globalMounts:
           - path: /data
-        # advancedMounts:
-        #   foundryvtt:
-        #     data:
-        #       - path: /data
-        #     filebrowser:
-        #       # - path: /db
-        #       #   subPath: filebrowser
-        #       - path: /data
+        advancedMounts:
+          foundryvtt:
+            data:
+              - path: /data
+            filebrowser:
+              # - path: /db
+              #   subPath: filebrowser
+              - path: /data
