@@ -49,7 +49,7 @@ spec:
               CONTAINER_PATCH_URLS: https://gist.githubusercontent.com/felddy/a02d66c3817f8223652d96febe580153/raw/foundryvtt-module-check.sh
             envFrom:
               - secretRef:
-                  name: foundryvtt-secret
+                  name: drakkenheim
             # probes:
             #   liveness: &probes
             #     enabled: false
