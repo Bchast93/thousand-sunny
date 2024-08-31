@@ -27,7 +27,7 @@ spec:
       namespace: volsync-system
   values:
     controllers:
-      foundryvtt:
+      drakkenheim:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
