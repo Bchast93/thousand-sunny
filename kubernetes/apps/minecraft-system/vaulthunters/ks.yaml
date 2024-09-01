@@ -3,16 +3,16 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app drakkenheim
+  name: &app vaulthunters
   namespace: flux-system
 spec:
-  targetNamespace: foundry-system
+  targetNamespace: minecraft-system
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  dependsOn:
-    - name: external-secrets-stores
-  path: ./kubernetes/apps/foundry-system/drakkenheim/app
+  # dependsOn:
+  #   - name: external-secrets-stores
+  path: ./kubernetes/apps/minecraft-system/vaulhunters/app
   prune: true
   sourceRef:
     kind: GitRepository
