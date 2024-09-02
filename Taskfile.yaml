@@ -31,6 +31,7 @@ includes:
   talos: .taskfiles/Talos
   sops: .taskfiles/Sops
   workstation: .taskfiles/Workstation
+  fetch: .taskfiles/Fetcher
   user:
     taskfile: .taskfiles/User
     optional: true
@@ -61,7 +62,7 @@ tasks:
 
   .template:
     internal: true
-    cmd: "{{.VIRTUAL_ENV}}/bin/makejinja"
+    cmd: "{{.PYTHON_BIN}} {{.VIRTUAL_ENV}}/bin/makejinja"
     preconditions:
       - msg: Missing virtual environment
         sh: test -d {{.VIRTUAL_ENV}}
