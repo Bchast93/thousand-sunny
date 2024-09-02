@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   # dependsOn:
   #   - name: external-secrets-stores
-  path: ./kubernetes/apps/minecraft-system/vaulhunters/app
+  path: ./kubernetes/apps/minecraft-system/vaulthunters/app
   prune: true
   sourceRef:
     kind: GitRepository
