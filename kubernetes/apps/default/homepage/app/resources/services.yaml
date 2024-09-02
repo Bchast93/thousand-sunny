@@ -1,0 +1,20 @@
+- Infrastructure:
+    - {{ .QNAP_NAME}}:
+        icon: qnap
+        href: {{ .QNAP_URL }}
+        description: QNAP {{ .QNAP_MODEL }}
+        widget:
+          type: qnap
+          url: {{ .QNAP_URL }}
+          username: {{ .QNAP_RO_USER }}
+          password: {{ .QNAP_RO_PASS }}
+- Observability:
+    - Cloudflared:
+        href: https://dash.cloudflare.com/
+        icon: cloudflare-zero-trust
+        description: Cloudflared Tunnel Status
+        widget:
+          type: cloudflared
+          accountid: {{ .CF_ACCOUNT_ID }}
+          tunnelid: {{ .CF_TUNNEL_ID }}
+          key: {{ .CF_API_TOKEN }}

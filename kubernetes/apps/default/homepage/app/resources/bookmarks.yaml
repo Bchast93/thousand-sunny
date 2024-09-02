@@ -1,0 +1,17 @@
+- Communicate:
+    - Discord:
+        - icon: discord.png
+          href: "https://discord.com/app"
+- Git:
+    - kubesearch:
+        - icon: kubernetes-dashboard.png
+          href: "https://kubesearch.dev/"
+    - Blakes-cluster:
+        - icon: github.png
+          href: "https://github.com/Bchast93/thousand-sunny"
+    - Bens-cluster:
+        - icon: github.png
+          href: "https://github.com/brunnels/talos-cluster"
+    - cluster-template:
+        - icon: github.png
+          href: "https://github.com/onedr0p/cluster-template"

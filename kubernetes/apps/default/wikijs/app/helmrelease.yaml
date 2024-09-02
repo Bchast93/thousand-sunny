@@ -1,0 +1,112 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app wiki
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      interval: 15m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  dependsOn:
+    - name: volsync
+      namespace: volsync-system
+  values:
+    controllers:
+      wiki:
+        annotations:
+          secret.reloader.stakater.com/reload: *app
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16.3@sha256:8ba3204f6b293dd168766009aae2ce4fa986a29b931c2d30ac1b30238ac750b8
+            envFrom:
+              - secretRef:
+                  name: *app
+        containers:
+          app:
+            image:
+              repository: ghcr.io/requarks/wiki
+              pullPolicy: IfNotPresent
+              tag: "2.5.303@sha256:1aae39563cf15d8cfc6371b6d33805653d9348a1af944a8be4501db36f120b84"
+            env:
+              TZ: ${TIMEZONE}
+              APP_URL: "https://wiki.${SECRET_DOMAIN}"
+              DB_TYPE: postgres
+              DB_HOST: postgres-rw.databases.svc.cluster.local
+              DB_PORT: 5432
+              DB_NAME: *app
+              DB_USER: *app
+              HA_ACTION: true
+            envFrom:
+              - secretRef:
+                  name: *app
+            securityContext:
+              seccompProfile: { type: RuntimeDefault }
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: 3000
+    ingress:
+      app:
+        className: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Other
+          gethomepage.dev/name: Wiki.js
+          gethomepage.dev/icon: "https://js.wiki/favicon.ico"
+          gethomepage.dev/description: A wiki of shitty proportions
+        hosts:
+          - host: "wiki.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+    persistence:
+      data:
+        enabled: true
+        type: persistentVolumeClaim
+        existingClaim: wiki
+
+    #   external:
+    #     enabled: true
+    #     className: internal
+    #     annotations:
+    #       external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
+    #     hosts:
+    #       - host: "wiki.${SECRET_DOMAIN}"
+    #         paths:
+    #           - path: /
+    #             service:
+    #               identifier: main
+    #               port: http
+    # # persistence:
+    #   sshkey:
+    #     enabled: true
+    #     type: secret
+    #     name: wikijs-secret
+    #     items:
+    #       - key: id_rsa
+    #         path: id_rsa
+    #     globalMounts:
+    #       - path: /home/node/.ssh
