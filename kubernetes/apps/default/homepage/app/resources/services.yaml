@@ -13,7 +13,7 @@
         href: {{ .SYN_URL }}
         description: Synology {{ .SYN_MODEL }}
         widget:
-          type: synology
+          type: diskstation
           url: {{ .SYN_URL }}
           username: {{ .SYN_RO_USER }}
           password: {{ .SYN_RO_PASS }}
