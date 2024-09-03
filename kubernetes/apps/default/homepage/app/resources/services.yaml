@@ -8,6 +8,15 @@
           url: {{ .QNAP_URL }}
           username: {{ .QNAP_RO_USER }}
           password: {{ .QNAP_RO_PASS }}
+    - {{ .SYN_NAME}}:
+        icon: synology
+        href: {{ .SYN_URL }}
+        description: Synology {{ .SYN_MODEL }}
+        widget:
+          type: synology
+          url: {{ .SYN_URL }}
+          username: {{ .SYN_RO_USER }}
+          password: {{ .SYN_RO_PASS }}
 - Observability:
     - Cloudflared:
         href: https://dash.cloudflare.com/
