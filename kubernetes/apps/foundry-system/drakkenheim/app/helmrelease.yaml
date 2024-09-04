@@ -65,9 +65,9 @@ spec:
             #   readiness: *probes
             resources:
               requests:
-                cpu: 10m
+                cpu: 20m
               limits:
-                memory: 4Gi
+                memory: 6Gi
           filebrowser:
             image:
               repository: docker.io/filebrowser/filebrowser
@@ -130,9 +130,9 @@ spec:
           external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Other
-          gethomepage.dev/name: FoundryVTT
+          gethomepage.dev/name: Drakkenheim
           gethomepage.dev/icon: foundry-vtt.png
-          gethomepage.dev/description: Flux Dashboard
+          gethomepage.dev/description: FoundryVTT
         hosts:
           - host: &host "drakkenheim.${SECRET_DOMAIN}"
             paths:
@@ -160,22 +160,8 @@ spec:
                 service:
                   identifier: filebrowser
                   port: fbhttp
-          # - host: "filebrowser.${SECRET_DOMAIN}"
-          #   paths:
-          #     - path: /
-          #       service:
-          #         identifier: filebrowser
-          #         port: fbhttp
     persistence:
       data:
         existingClaim: drakkenheim
         globalMounts:
           - path: /data
-        # advancedMounts:
-        #   foundryvtt:
-        #     data:
-        #       - path: /data
-        #     filebrowser:
-        #       - path: /db
-        #         subPath: filebrowser
-        #       - path: /data
