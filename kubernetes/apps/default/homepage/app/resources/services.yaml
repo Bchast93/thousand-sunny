@@ -17,6 +17,7 @@
           url: {{ .SYN_URL }}
           username: {{ .SYN_RO_USER }}
           password: {{ .SYN_RO_PASS }}
+          volume: volume_1
 - Observability:
     - Cloudflared:
         href: https://dash.cloudflare.com/
