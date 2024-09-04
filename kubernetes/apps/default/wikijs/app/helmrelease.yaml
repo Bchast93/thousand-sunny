@@ -74,7 +74,7 @@ spec:
           gethomepage.dev/group: Other
           gethomepage.dev/name: Wiki.js
           gethomepage.dev/icon: "https://js.wiki/favicon.ico"
-          gethomepage.dev/description: A wiki of shitty proportions
+          gethomepage.dev/description: Wiki
         hosts:
           - host: "wiki.${SECRET_DOMAIN}"
             paths:
@@ -87,26 +87,3 @@ spec:
         enabled: true
         type: persistentVolumeClaim
         existingClaim: wiki
-
-    #   external:
-    #     enabled: true
-    #     className: internal
-    #     annotations:
-    #       external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
-    #     hosts:
-    #       - host: "wiki.${SECRET_DOMAIN}"
-    #         paths:
-    #           - path: /
-    #             service:
-    #               identifier: main
-    #               port: http
-    # # persistence:
-    #   sshkey:
-    #     enabled: true
-    #     type: secret
-    #     name: wikijs-secret
-    #     items:
-    #       - key: id_rsa
-    #         path: id_rsa
-    #     globalMounts:
-    #       - path: /home/node/.ssh
