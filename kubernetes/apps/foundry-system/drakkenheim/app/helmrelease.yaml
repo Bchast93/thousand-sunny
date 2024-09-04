@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: drakkenheim
+  name: &app drakkenheim
 spec:
   interval: 30m
   chart:
@@ -102,7 +102,7 @@ spec:
             #   limits:
             #     memory: 2Gi
     defaultPodOptions:
-      hostname: drakkenheim
+      hostname: *app
       securityContext:
         # runAsNonRoot: true
         # runAsUser: 1000
@@ -113,12 +113,12 @@ spec:
         seccompProfile: { type: RuntimeDefault }
     service:
       app:
-        controller: drakkenheim
+        controller: *app
         ports:
           http:
             port: 30000
       filebrowser:
-        controller: drakkenheim
+        controller: *app
         primary: false
         ports:
           fbhttp:
@@ -162,6 +162,6 @@ spec:
                   port: fbhttp
     persistence:
       data:
-        existingClaim: drakkenheim
+        existingClaim: *app
         globalMounts:
           - path: /data
