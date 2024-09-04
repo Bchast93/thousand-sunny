@@ -5,7 +5,7 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./homepage/ks.yaml
-  # - ./wikijs/ks.yaml
+  - ./wikijs/ks.yaml
 configMapGenerator:
   - name: authelia-ingress-hv
     namespace: default
