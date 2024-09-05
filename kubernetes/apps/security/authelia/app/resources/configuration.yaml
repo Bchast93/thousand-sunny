@@ -84,7 +84,7 @@ access_control:
     - domain: "*.${SECRET_DOMAIN}"
       policy: two_factor
     # Drakkenheim filter
-    - domain: "drakkenheim.${SECRET_DOMAIN}"
+    - domain: "filebrowser.${SECRET_DOMAIN}"
       subject:
         - 'group:drakkenheim'
       policy: 'two_factor'
