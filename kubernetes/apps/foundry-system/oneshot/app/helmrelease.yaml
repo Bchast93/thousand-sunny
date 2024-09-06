@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: &app drakkenheim
+  name: &app oneshot
 spec:
   interval: 30m
   chart:
@@ -27,7 +27,7 @@ spec:
       namespace: volsync-system
   values:
     controllers:
-      drakkenheim:
+      oneshot:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -36,7 +36,7 @@ spec:
               repository: docker.io/felddy/foundryvtt
               tag: 11.315.1@sha256:6a79a9fe9110d7447e7b36f534402884a2c88783dc59b7d25943a3c47145ab03
             env:
-              FOUNDRY_HOSTNAME: &host "drakkenheim.${SECRET_DOMAIN}"
+              FOUNDRY_HOSTNAME: &host "oneshot.${SECRET_DOMAIN}"
               FOUNDRY_LOCAL_HOSTNAME: *host
               CONTAINER_CACHE: /data/container_cache
               CONTAINER_PATCHES: /data/container_patches
@@ -49,7 +49,7 @@ spec:
               CONTAINER_PATCH_URLS: https://gist.githubusercontent.com/felddy/a02d66c3817f8223652d96febe580153/raw/foundryvtt-module-check.sh
             envFrom:
               - secretRef:
-                  name: drakkenheim-secret
+                  name: oneshot-secret
             # probes:
             #   liveness: &probes
             #     enabled: false
@@ -128,13 +128,8 @@ spec:
         className: external
         annotations:
           external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Other
-          gethomepage.dev/name: Drakkenheim
-          gethomepage.dev/icon: foundry-vtt.png
-          gethomepage.dev/description: FoundryVTT
         hosts:
-          - host: &host "drakkenheim.${SECRET_DOMAIN}"
+          - host: &host "oneshot.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:
@@ -148,13 +143,8 @@ spec:
           nginx.ingress.kubernetes.io/auth-url: http://authelia.security.svc.cluster.local/api/verify
           nginx.ingress.kubernetes.io/auth-signin: https://auth.${SECRET_DOMAIN}
           nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Name,Remote-Groups,Remote-Email
-          nginx.ingress.kubernetes.io/auth-snippet: |
-            proxy_set_header X-Forwarded-Method $request_method;
-            if ($http_remote_groups !~* "(^|,)drakkenheim($|,)") {
-              return 403;
-            }
         hosts:
-          - host: "filebrowser.${SECRET_DOMAIN}"
+          - host: "filebrowser2.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:
