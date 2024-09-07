@@ -25,3 +25,4 @@ resources:
   - ./piraeus.yaml
   - ./bitnami.yaml
   - ./grafana.yaml
+  - ./angelnu-charts.yaml
