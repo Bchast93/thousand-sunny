@@ -34,11 +34,11 @@ spec:
           app:
             image:
               repository: docker.io/jesec/flood
-              tag: master@sha256:640c4d80a1d31822b957326eee37646afee907ba1e445df657441c4a9efd1d0e
+              tag: master@sha256:a2157c00b263ec902b37b285cb852a3048ddf9172f624e94fa829a720dbd301d
             env:
               TZ: "${TIMEZONE}"
               FLOOD_OPTION_rundir: /data
-              FLOOD_OPTION_auth: none
+              # FLOOD_OPTION_auth: none
               FLOOD_OPTION_port: &port 80
               # FLOOD_OPTION_trurl: http://flood:9091/transmission/rpc
             resources:
