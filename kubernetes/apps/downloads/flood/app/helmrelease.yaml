@@ -22,9 +22,9 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  valuesFrom:
-    - kind: ConfigMap
-      name: authelia-ingress-hv
+  # valuesFrom:
+  #   - kind: ConfigMap
+  #     name: authelia-ingress-hv
   values:
     controllers:
       flood:
@@ -40,13 +40,13 @@ spec:
               FLOOD_OPTION_rundir: /data
               FLOOD_OPTION_auth: none
               FLOOD_OPTION_port: &port 80
-              FLOOD_OPTION_trurl: http://flood:9091/transmission/rpc
+              # FLOOD_OPTION_trurl: http://flood:9091/transmission/rpc
             resources:
               requests:
                 cpu: 10m
                 memory: 128Mi
               limits:
-                memory: 512Mi
+                memory: 1Gi
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
@@ -69,7 +69,7 @@ spec:
                 cpu: 50m
                 memory: 128Mi
               limits:
-                memory: 512Gi
+                memory: 1Gi
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
