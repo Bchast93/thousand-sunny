@@ -6,7 +6,7 @@ resources:
   - ./namespace.yaml
   - ./ks.yaml
   - ./flaresolverr/ks.yaml
-  - ./flood/ks.yaml
+  # - ./flood/ks.yaml
   # - ./prowlarr/ks.yaml
   # - ./radarr/ks.yaml
   # - ./readarr/ks.yaml
