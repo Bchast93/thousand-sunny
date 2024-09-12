@@ -28,3 +28,28 @@
           accountid: {{ .CF_ACCOUNT_ID }}
           tunnelid: {{ .CF_TUNNEL_ID }}
           key: {{ .CF_API_TOKEN }}
+    - Gluetun:
+        icon: gluetun
+        description: Gluetun VPN Gateway
+        namespace: network
+        app: pod-gateway
+        widget:
+          type: gluetun
+          url: http://vpn-gateway.network
+          fields: ["public_ip", "region"]
+- Calendar:
+    - Agenda:
+        widget:
+          type: calendar
+          view: agenda
+          maxEvents: 20
+          integrations:
+            - type: sonarr
+              service_group: Downloads
+              service_name: Sonarr
+            - type: radarr
+              service_group: Downloads
+              service_name: Radarr
+            - type: readarr
+              service_group: Downloads
+              service_name: Readarr

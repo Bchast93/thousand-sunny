@@ -1,7 +1,3 @@
-- Communicate:
-    - Discord:
-        - icon: discord.png
-          href: "https://discord.com/app"
 - Git:
     - kubesearch:
         - icon: kubernetes-dashboard.png
