@@ -26,3 +26,4 @@ resources:
   - ./bitnami.yaml
   - ./grafana.yaml
   - ./angelnu-charts.yaml
+  - ./kubernetes-dashboard.yaml
