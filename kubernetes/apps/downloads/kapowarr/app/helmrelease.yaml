@@ -77,7 +77,7 @@ spec:
       downloads:
         existingClaim: cifs-downloads
         advancedMounts:
-          readarr:
+          kapowarr:
             app:
               - path: /downloads/downloaded_books
                 readOnly: false
