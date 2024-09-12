@@ -11,3 +11,4 @@ resources:
   - ../../../templates/csi-driver-smb/claims/cifs-movies.yaml
   - ../../../templates/csi-driver-smb/claims/cifs-music.yaml
   - ../../../templates/csi-driver-smb/claims/cifs-tv.yaml
+  - ../../../templates/csi-driver-smb/claims/cifs-comics.yaml

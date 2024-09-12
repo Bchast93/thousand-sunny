@@ -67,21 +67,21 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: kapowarr-config
+        existingClaim: *app
       tmp:
         type: emptyDir
       media:
-        existingClaim: cifs-books
+        existingClaim: cifs-comics
         globalMounts:
-          - path: /media/books
+          - path: /media/comics
       downloads:
         existingClaim: cifs-downloads
         advancedMounts:
           kapowarr:
             app:
-              - path: /downloads/downloaded_books
+              - path: /downloads/downloaded_comics
                 readOnly: false
-                subPath: sabnzbd/downloaded_books
-              - path: /downloads/books-kapowarr
+                subPath: sabnzbd/downloaded_comics
+              - path: /downloads/comics-kapowarr
                 readOnly: false
-                subPath: flood/books-kapowarr
+                subPath: flood/comics-kapowarr
