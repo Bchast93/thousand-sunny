@@ -84,11 +84,11 @@ access_control:
     - domain: "*.${SECRET_DOMAIN}"
       policy: two_factor
     # Drakkenheim filter
-    - domain: "filebrowser.${SECRET_DOMAIN}"
+    - domain: "filebrowser2.${SECRET_DOMAIN}"
       resources:
       - '^/groups/drakkenheim/.*$'
       subject:
-        - 'group:drakkenheim'
+      - 'group:drakkenheim'
       policy: 'two_factor'
 totp:
   disable: false
