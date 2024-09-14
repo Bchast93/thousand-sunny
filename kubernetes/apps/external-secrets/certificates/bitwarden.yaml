@@ -3,21 +3,19 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: &name bitwarden-tls-certs
+  name: bitwarden-css-certs
+  namespace: external-secrets
 spec:
-  secretName: *name
+  secretName: bitwarden-css-certs
   dnsNames:
-    - bitwarden-sdk-server.external-secrets.svc.cluster.local
-    - external-secrets-bitwarden-sdk-server.external-secrets.svc.cluster.local
-    - localhost
-  ipAddresses:
-    - 127.0.0.1
-    - ::1
+    - bitwarden-secrets-manager.external-secrets.svc.cluster.local
   privateKey:
     algorithm: RSA
     encoding: PKCS8
     size: 2048
     rotationPolicy: Always
+  usages:
+    - client auth
   issuerRef:
     name: home-ca-issuer
     kind: ClusterIssuer
