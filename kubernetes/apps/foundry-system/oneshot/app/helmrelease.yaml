@@ -78,7 +78,7 @@ spec:
               FB_DATABASE: /config/filebrowser.db
               FB_ROOT: /data
               FB_LOG: stdout
-              FB_NOAUTH: true
+              FB_NOAUTH: false
             # probes:
             #   liveness: &probes
             #     enabled: true
@@ -142,7 +142,8 @@ spec:
           nginx.ingress.kubernetes.io/auth-method: GET
           nginx.ingress.kubernetes.io/auth-url: http://authelia.security.svc.cluster.local/api/verify
           nginx.ingress.kubernetes.io/auth-signin: https://auth.${SECRET_DOMAIN}
-          nginx.ingress.kubernetes.io/auth-response-headers: Remote-User,Remote-Name,Remote-Groups,Remote-Email
+          nginx.ingress.kubernetes.io/auth-response-headers: Set-Cookie,Remote-User,Remote-Name,Remote-Groups,Remote-Email
+          nginx.ingress.kubernetes.io/auth-snippet: proxy_set_header X-Forwarded-Host $http_host;
         hosts:
           - host: "filebrowser2.${SECRET_DOMAIN}"
             paths:
