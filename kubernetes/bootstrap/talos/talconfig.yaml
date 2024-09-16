@@ -73,7 +73,6 @@ nodes:
         mtu: 1500
         vip:
           ip: "10.100.151.30"
-
 # Global patches
 patches:
   - # Force nameserver
