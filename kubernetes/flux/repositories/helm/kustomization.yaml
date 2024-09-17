@@ -27,3 +27,4 @@ resources:
   - ./grafana.yaml
   - ./angelnu-charts.yaml
   - ./kubernetes-dashboard.yaml
+  - ./intel.yaml
