@@ -28,3 +28,4 @@ resources:
   - ./angelnu-charts.yaml
   - ./kubernetes-dashboard.yaml
   - ./intel.yaml
+  - ./node-feature-discovery.yaml
