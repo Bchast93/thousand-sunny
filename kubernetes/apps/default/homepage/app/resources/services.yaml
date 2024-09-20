@@ -1,5 +1,5 @@
 - Infrastructure:
-    - {{ .QNAP_NAME}}:
+    - {{ .QNAP_NAME }}:
         icon: qnap
         href: {{ .QNAP_URL }}
         description: QNAP {{ .QNAP_MODEL }}
@@ -8,7 +8,7 @@
           url: {{ .QNAP_URL }}
           username: {{ .QNAP_RO_USER }}
           password: {{ .QNAP_RO_PASS }}
-    - {{ .SYN_NAME}}:
+    - {{ .SYN_NAME }}:
         icon: synology
         href: {{ .SYN_URL }}
         description: Synology {{ .SYN_MODEL }}
@@ -18,6 +18,15 @@
           username: {{ .SYN_RO_USER }}
           password: {{ .SYN_RO_PASS }}
           volume: volume_1
+    - {{ .UNIFI_NAME }}:
+        icon: qnap
+        href: {{ .UNIFI_URL }}
+        description: UNIFI {{ .UNIFI_MODEL }}
+        widget:
+          type: unifi
+          url: {{ .UNIFI_URL }}
+          username: {{ .UNIFI_RO_USER }}
+          password: {{ .UNIFI_RO_PASS }}
 - Observability:
     - Cloudflared:
         href: https://dash.cloudflare.com/
