@@ -12,9 +12,8 @@ data:
   LAN_CIDR: 10.100.150.0/23
   THEME_PARK_SNIPPET: >
     proxy_set_header Accept-Encoding "";
-    sub_filter '</body>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/{{ .Release.Name }}/nord.css"></body>';
+    sub_filter '</body>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/{{ .Release.Name }}/space-gray.css"></body>';
     sub_filter_once on;
   SVC_QBITTTORENT_ADDR: 10.100.151.36
   SVC_VPN_ADDR: 10.100.151.37
   SVC_PLEX_ADDR: 10.100.151.38
-  SVC_IVENTOY_ADDR: 10.100.151.39
