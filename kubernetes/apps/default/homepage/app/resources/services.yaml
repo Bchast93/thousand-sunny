@@ -19,7 +19,7 @@
           password: {{ .SYN_RO_PASS }}
           volume: volume_1
     - {{ .UNIFI_NAME }}:
-        icon: qnap
+        icon: unifi
         href: {{ .UNIFI_URL }}
         description: UNIFI {{ .UNIFI_MODEL }}
         widget:
