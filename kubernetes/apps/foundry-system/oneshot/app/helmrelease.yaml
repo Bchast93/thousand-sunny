@@ -50,57 +50,57 @@ spec:
             envFrom:
               - secretRef:
                   name: oneshot-secret
-            probes:
-              liveness: &probes
-                enabled: false
-                custom: true
-                spec:
-                  httpGet:
-                    path: /ping
-                    port: 30000
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
-              readiness: *probes
+            # probes:
+            #   liveness: &probes
+            #     enabled: false
+            #     custom: true
+            #     spec:
+            #       httpGet:
+            #         path: /ping
+            #         port: 30000
+            #       initialDelaySeconds: 0
+            #       periodSeconds: 10
+            #       timeoutSeconds: 1
+            #       failureThreshold: 3
+            #   readiness: *probes
             resources:
               requests:
                 cpu: 20m
               limits:
                 memory: 6Gi
-          filebrowser:
-            image:
-              repository: docker.io/filebrowser/filebrowser
-              tag: v2.31.1@sha256:b9b0dcac8b20c01ed4777889c8ae6ff74443ed604e11e4b862d9f3068eeb9114
-            args: ["-d", "/db/database.db"]
-            env:
-              TZ: ${TIMEZONE}
-              FB_DATABASE: /config/filebrowser.db
-              FB_ROOT: /data
-              FB_LOG: stdout
-              FB_NOAUTH: false
-            probes:
-              liveness: &probes
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /health
-                    port: 80
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
-              readiness: *probes
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
-            resources:
-              requests:
-                cpu: 100m
-              limits:
-                memory: 2Gi
+          # filebrowser:
+          #   image:
+          #     repository: docker.io/filebrowser/filebrowser
+          #     tag: v2.31.1@sha256:b9b0dcac8b20c01ed4777889c8ae6ff74443ed604e11e4b862d9f3068eeb9114
+          #   args: ["-d", "/db/database.db"]
+          #   env:
+          #     TZ: ${TIMEZONE}
+          #     FB_DATABASE: /config/filebrowser.db
+          #     FB_ROOT: /data
+          #     FB_LOG: stdout
+          #     FB_NOAUTH: false
+          #   probes:
+          #     liveness: &probes
+          #       enabled: true
+          #       custom: true
+          #       spec:
+          #         httpGet:
+          #           path: /health
+          #           port: 80
+          #         initialDelaySeconds: 0
+          #         periodSeconds: 10
+          #         timeoutSeconds: 1
+          #         failureThreshold: 3
+          #     readiness: *probes
+          #   securityContext:
+          #     allowPrivilegeEscalation: false
+          #     readOnlyRootFilesystem: true
+          #     capabilities: { drop: ["ALL"] }
+          #   resources:
+          #     requests:
+          #       cpu: 100m
+          #     limits:
+          #       memory: 2Gi
     defaultPodOptions:
       hostname: *app
       securityContext:
