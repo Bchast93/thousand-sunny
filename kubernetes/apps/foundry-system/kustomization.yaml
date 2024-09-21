@@ -7,4 +7,4 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   # - ./drakkenheim/ks.yaml
-  # - ./oneshot/ks.yaml
+  - ./oneshot/ks.yaml
