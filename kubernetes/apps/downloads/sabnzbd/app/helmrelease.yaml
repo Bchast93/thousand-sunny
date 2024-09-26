@@ -118,7 +118,11 @@ spec:
         globalMounts:
           - path: /media/applications
       downloads:
-        existingClaim: cifs-downloads
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${SYNOLOGY_ADDR}"
+            path: /volume1/downloads
         globalMounts:
           - path: /downloads
             subPath: sabnzbd
