@@ -166,7 +166,7 @@ spec:
             transmission:
               - path: incomplete
       downloads:
-        existingClaim: cifs-downloads
+        existingClaim: nfs-downloads
         advancedMounts:
           flood:
             app:
