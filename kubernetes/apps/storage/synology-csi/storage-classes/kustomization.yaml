@@ -8,7 +8,6 @@ resources:
   - ./nfs-backup.yaml
   - ./nfs-books.yaml
   - ./nfs-downloads.yaml
-  - ./nfs-dynamic.yaml
   - ./nfs-games.yaml
   - ./nfs-misc.yaml
   - ./nfs-movies.yaml
