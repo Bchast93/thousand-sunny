@@ -122,7 +122,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${SYNOLOGY_ADDR}"
-            path: /volume1/downloads
+            path: /volume1/data/downloads
         globalMounts:
           - path: /downloads
             subPath: sabnzbd
