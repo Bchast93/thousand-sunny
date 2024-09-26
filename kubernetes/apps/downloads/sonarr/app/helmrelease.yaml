@@ -124,7 +124,7 @@ spec:
         globalMounts:
           - path: /media/tv
       media2:
-        exisitingClaim: nfs-tv
+        existingClaim: nfs-tv
         globalMounts:
           - path: /media/tv-2
       downloads:
