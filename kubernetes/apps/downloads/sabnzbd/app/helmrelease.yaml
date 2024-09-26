@@ -114,7 +114,7 @@ spec:
       incomplete:
         type: emptyDir
       applications:
-        existingClaim: cifs-applications
+        existingClaim: nfs-applications
         globalMounts:
           - path: /media/applications
       downloads:
@@ -127,10 +127,10 @@ spec:
           - path: /downloads
             subPath: sabnzbd
       games:
-        existingClaim: cifs-games
+        existingClaim: nfs-games
         globalMounts:
           - path: /media/games
       misc:
-        existingClaim: cifs-misc
+        existingClaim: nfs-misc
         globalMounts:
           - path: /media/misc

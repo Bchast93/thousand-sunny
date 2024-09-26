@@ -1,0 +1,19 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./nfs-appdata.yaml
+  - ./nfs-applications.yaml
+  - ./nfs-backup.yaml
+  - ./nfs-books.yaml
+  - ./nfs-downloads.yaml
+  - ./nfs-dynamic.yaml
+  - ./nfs-games.yaml
+  - ./nfs-misc.yaml
+  - ./nfs-movies.yaml
+  - ./nfs-music.yaml
+  - ./nfs-pictures.yaml
+  - ./nfs-tv.yaml
+  - ./nfs-videos.yaml
+  - ./nfs-comics.yaml
