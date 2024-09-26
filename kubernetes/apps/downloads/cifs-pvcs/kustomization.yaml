@@ -12,12 +12,12 @@ resources:
   - ../../../templates/csi-driver-smb/claims/cifs-music.yaml
   - ../../../templates/csi-driver-smb/claims/cifs-tv.yaml
   - ../../../templates/csi-driver-smb/claims/cifs-comics.yaml
-  - ../../../templates/synology-csi/claims/nfs-applications.yaml
-  - ../../../templates/synology-csi/claims/nfs-books.yaml
-  - ../../../templates/synology-csi/claims/nfs-downloads.yaml
-  - ../../../templates/synology-csi/claims/nfs-games.yaml
-  - ../../../templates/synology-csi/claims/nfs-misc.yaml
-  - ../../../templates/synology-csi/claims/nfs-movies.yaml
-  - ../../../templates/synology-csi/claims/nfs-music.yaml
-  - ../../../templates/synology-csi/claims/nfs-tv.yaml
-  - ../../../templates/synology-csi/claims/nfs-comics.yaml
+  # - ../../../templates/synology-csi/claims/nfs-applications.yaml
+  # - ../../../templates/synology-csi/claims/nfs-books.yaml
+  # - ../../../templates/synology-csi/claims/nfs-downloads.yaml
+  # - ../../../templates/synology-csi/claims/nfs-games.yaml
+  # - ../../../templates/synology-csi/claims/nfs-misc.yaml
+  # - ../../../templates/synology-csi/claims/nfs-movies.yaml
+  # - ../../../templates/synology-csi/claims/nfs-music.yaml
+  # - ../../../templates/synology-csi/claims/nfs-tv.yaml
+  # - ../../../templates/synology-csi/claims/nfs-comics.yaml
