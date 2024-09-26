@@ -35,7 +35,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: synology-csi-nfs
+    - name: synology-csi
   path: ./kubernetes/apps/storage/synology-csi/storage-classes
   prune: true
   force: true
