@@ -117,12 +117,17 @@ spec:
         existingClaim: nfs-applications
         globalMounts:
           - path: /media/applications
+      # downloads:
+      #   type: custom
+      #   volumeSpec:
+      #     nfs:
+      #       server: "${SYN_HOST}"
+      #       path: /volume1/data/downloads
+      #   globalMounts:
+      #     - path: /downloads
+      #       subPath: sabnzbd
       downloads:
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${SYN_HOST}"
-            path: /volume1/data/downloads
+        existingClaim: nfs-downloads
         globalMounts:
           - path: /downloads
             subPath: sabnzbd
