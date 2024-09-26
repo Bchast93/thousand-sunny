@@ -114,28 +114,28 @@ spec:
       incomplete:
         type: emptyDir
       applications:
-        existingClaim: nfs-applications
+        existingClaim: cifs-applications
         globalMounts:
           - path: /media/applications
-      # downloads:
-      #   type: custom
-      #   volumeSpec:
-      #     nfs:
-      #       server: "${SYN_HOST}"
-      #       path: /volume1/data/downloads
-      #   globalMounts:
-      #     - path: /downloads
-      #       subPath: sabnzbd
       downloads:
-        existingClaim: nfs-downloads
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${SYN_HOST}"
+            path: /volume1/data/downloads
         globalMounts:
           - path: /downloads
             subPath: sabnzbd
+      # downloads:
+      #   existingClaim: cifs-downloads
+      #   globalMounts:
+      #     - path: /downloads
+      #       subPath: sabnzbd
       games:
-        existingClaim: nfs-games
+        existingClaim: cifs-games
         globalMounts:
           - path: /media/games
       misc:
-        existingClaim: nfs-misc
+        existingClaim: cifs-misc
         globalMounts:
           - path: /media/misc
