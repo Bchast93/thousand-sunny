@@ -4,7 +4,7 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: "nfs-comics"
-provisioner: nfs.csi.k8s.io
+provisioner: csi.san.synology.com
 parameters:
   server: "${SYN_HOST}"  # NFS server hostname or IP
   share: "/volume1/data/comics"                 # NFS export path

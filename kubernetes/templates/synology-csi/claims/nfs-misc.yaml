@@ -5,8 +5,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: &name nfs-misc
   annotations:
-    volume.beta.kubernetes.io/storage-provisioner: nfs.csi.k8s.io
-    volume.kubernetes.io/storage-provisioner: nfs.csi.k8s.io
+    volume.beta.kubernetes.io/storage-provisioner: csi.san.synology.com
+    volume.kubernetes.io/storage-provisioner: csi.san.synology.com
   labels:
     csi-driver-nfs: "nfs-share"
 spec:
