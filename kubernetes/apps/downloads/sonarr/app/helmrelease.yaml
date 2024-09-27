@@ -123,12 +123,8 @@ spec:
         existingClaim: cifs-tv
         globalMounts:
           - path: /media/tv
-      # media2:
-      #   existingClaim: nfs-tv
-      #   globalMounts:
-      #     - path: /media/tv-2
       downloads:
-        existingClaim: nfs-downloads
+        existingClaim: cifs-downloads
         advancedMounts:
           sonarr:
             app:

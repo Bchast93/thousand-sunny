@@ -123,12 +123,8 @@ spec:
         existingClaim: cifs-movies
         globalMounts:
           - path: /media/movies
-      # media2:
-      #   existingClaim: nfs-movies
-      #   globalMounts:
-      #     - path: /media/movies-2
-      # downloads:
-      #   existingClaim: nfs-downloads
+      downloads:
+        existingClaim: cifs-downloads
         advancedMounts:
           radarr:
             app:

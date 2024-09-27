@@ -117,20 +117,20 @@ spec:
         existingClaim: cifs-applications
         globalMounts:
           - path: /media/applications
-      downloads:
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${SYN_HOST}"
-            path: /volume1/data/downloads
-        globalMounts:
-          - path: /downloads
-            subPath: sabnzbd
       # downloads:
-      #   existingClaim: cifs-downloads
+      #   type: custom
+      #   volumeSpec:
+      #     nfs:
+      #       server: "${SYN_HOST}"
+      #       path: /volume1/data/downloads
       #   globalMounts:
       #     - path: /downloads
       #       subPath: sabnzbd
+      downloads:
+        existingClaim: cifs-downloads
+        globalMounts:
+          - path: /downloads
+            subPath: sabnzbd
       games:
         existingClaim: cifs-games
         globalMounts:

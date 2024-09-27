@@ -7,9 +7,9 @@ resources:
   - ./ks.yaml
   - ./flaresolverr/ks.yaml
   - ./flood/ks.yaml
+  - ./sabnzbd/ks.yaml
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
-  - ./sabnzbd/ks.yaml
   - ./sonarr/ks.yaml
   # - ./readarr/ks.yaml
 configMapGenerator:
