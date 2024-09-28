@@ -5,8 +5,8 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./ks.yaml
-  # - ./overseerr/ks.yaml
-  # - ./plex/ks.yaml
-  # - ./tautulli/ks.yaml
-  # - ./theme-park/ks.yaml
-  # - ./recyclarr/ks.yaml
+  - ./overseerr/ks.yaml
+  - ./plex/ks.yaml
+  - ./tautulli/ks.yaml
+  - ./theme-park/ks.yaml
+  - ./recyclarr/ks.yaml
