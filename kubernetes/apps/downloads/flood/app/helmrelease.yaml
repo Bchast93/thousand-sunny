@@ -165,14 +165,8 @@ spec:
               - path: incomplete
             transmission:
               - path: incomplete
-      # downloads:
-      #   existingClaim: cifs-downloads
       downloads:
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${SYN_HOST}"
-            path: /volume1/data/downloads
+        existingClaim: cifs-downloads
         advancedMounts:
           flood:
             app:
