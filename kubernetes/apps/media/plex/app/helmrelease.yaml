@@ -122,10 +122,10 @@ spec:
         type: emptyDir
       transcode:
         type: emptyDir
-      # movies:
-      #   existingClaim: cifs-movies
-      #   globalMounts:
-      #     - path: /media/movies
+      movies:
+        existingClaim: cifs-movies
+        globalMounts:
+          - path: /media/movies
       # music:
       #   existingClaim: cifs-music
       #   globalMounts:
