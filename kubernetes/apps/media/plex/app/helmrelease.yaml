@@ -126,19 +126,19 @@ spec:
         existingClaim: cifs-movies
         globalMounts:
           - path: /media/movies
-      # music:
-      #   existingClaim: cifs-music
-      #   globalMounts:
-      #     - path: /media/music
-      # pictures:
-      #   existingClaim: cifs-pictures
-      #   globalMounts:
-      #     - path: /media/pictures
-      # tv:
-      #   existingClaim: cifs-tv
-      #   globalMounts:
-      #     - path: /media/tv
-      # videos:
-      #   existingClaim: cifs-videos
-      #   globalMounts:
-      #     - path: /media/videos
+      music:
+        existingClaim: cifs-music
+        globalMounts:
+          - path: /media/music
+      pictures:
+        existingClaim: cifs-pictures
+        globalMounts:
+          - path: /media/pictures
+      tv:
+        existingClaim: cifs-tv
+        globalMounts:
+          - path: /media/tv
+      videos:
+        existingClaim: cifs-videos
+        globalMounts:
+          - path: /media/videos
