@@ -17,3 +17,4 @@ resources:
   - ./cifs-tv.yaml
   - ./cifs-videos.yaml
   - ./cifs-comics.yaml
+  - ./cifs-drakkenheim.yaml
