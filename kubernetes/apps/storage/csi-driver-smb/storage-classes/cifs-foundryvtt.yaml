@@ -3,7 +3,7 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: "cifs-foundryvtt"
+  name: "cifs-drakkenheim"
 provisioner: smb.csi.k8s.io
 parameters:
-  source: "//${SECRET_QNAP_HOSTNAME}/foundryvtt
+  source: "//${SECRET_QNAP_HOSTNAME}/drakkenheim
