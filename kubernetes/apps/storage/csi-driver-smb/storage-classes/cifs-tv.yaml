@@ -6,4 +6,4 @@ metadata:
   name: "cifs-tv"
 provisioner: smb.csi.k8s.io
 parameters:
-  source: "//${SECRET_QNAP_HOSTNAME}/tv"
+  source: "//${SECRET_SYN_HOSTNAME}/tv"

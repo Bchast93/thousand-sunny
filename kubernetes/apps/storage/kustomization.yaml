@@ -7,4 +7,4 @@ resources:
   - ./ks.yaml
   - ./csi-driver-smb/ks.yaml
 #  - ./snapshot-controller/ks.yaml
-  - ./synology-csi/ks.yaml
+  # - ./synology-csi/ks.yaml

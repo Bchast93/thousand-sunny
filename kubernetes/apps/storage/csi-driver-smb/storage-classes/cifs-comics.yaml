@@ -6,4 +6,4 @@ metadata:
   name: "cifs-comics"
 provisioner: smb.csi.k8s.io
 parameters:
-  source: "//${SECRET_QNAP_HOSTNAME}/comics"
+  source: "//${SECRET_SYN_HOSTNAME}/comics"
