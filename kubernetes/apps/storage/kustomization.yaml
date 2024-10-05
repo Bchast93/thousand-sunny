@@ -5,6 +5,6 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./ks.yaml
-  - ./csi-driver-smb/ks.yaml
+  # - ./csi-driver-smb/ks.yaml
 #  - ./snapshot-controller/ks.yaml
   # - ./synology-csi/ks.yaml
