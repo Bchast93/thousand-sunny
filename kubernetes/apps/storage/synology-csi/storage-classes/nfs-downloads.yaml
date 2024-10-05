@@ -7,7 +7,7 @@ metadata:
 provisioner: csi.san.synology.com
 parameters:
   server: "${SYN_HOST}"  # NFS server hostname or IP
-  share: "/volume1/data/downloads"                 # NFS export path
+  share: "/volume1/downloads"                 # NFS export path
 mountOptions:
   - vers=4.1                        # NFS version
 reclaimPolicy: Retain               # Reclaim policy can be changed to Delete if needed
