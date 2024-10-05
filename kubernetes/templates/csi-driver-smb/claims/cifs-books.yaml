@@ -14,5 +14,5 @@ spec:
   - ReadWriteMany
   resources:
     requests:
-      storage: 10Ti
+      storage: 50Ti
   storageClassName: *name
