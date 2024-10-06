@@ -12,6 +12,7 @@ resources:
   - ./radarr/ks.yaml
   - ./sonarr/ks.yaml
   - ./readarr/ks.yaml
+  - ./unpackerr/ks.yaml
 configMapGenerator:
   - name: authelia-ingress-hv
     namespace: downloads
