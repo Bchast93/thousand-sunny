@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 3.4.0
+      version: 3.5.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -34,7 +34,7 @@ spec:
           init-db:
             image:
               repository: ghcr.io/onedr0p/postgres-init
-              tag: 16.3@sha256:8ba3204f6b293dd168766009aae2ce4fa986a29b931c2d30ac1b30238ac750b8
+              tag: 16.3@sha256:9cc2856e3bd5e6100dca9123aae7b6dc9c2f8b7d5a0eab00aad0c2fed5355c93
             envFrom: &envFrom
               - secretRef:
                   name: *app
@@ -42,7 +42,7 @@ spec:
           app:
             image:
               repository: ghcr.io/onedr0p/prowlarr-develop
-              tag: 1.24.3@sha256:9c88257656e4ac893d692abf38a784c80ef1638eb99fae376bdb48f75498ce52
+              tag: 1.25.1@sha256:f3022d833beddc5bc493424b1c00c9726e20b9e79e871f53690b1a6b8f300db8
             env:
               TZ: "${TIMEZONE}"
               PROWLARR__APP__INSTANCENAME: Prowlarr
