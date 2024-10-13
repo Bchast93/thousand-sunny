@@ -12,7 +12,7 @@ spec:
       restartPolicy: OnFailure
       containers:
         - name: postgresql
-          image: ghcr.io/cloudnative-pg/postgresql:16.4-9@sha256:563d3ba98377327b5863bd56ddd52bc5f2cf44bb8d7c6ca3a80ac71528391922
+          image: ghcr.io/cloudnative-pg/postgresql:17.0-9@sha256:c163f048bd01187f3d25ba48d8842221f0cbae2d2f95f572ca89268e5473ee5f
           command: ["/bin/sh"]
           args:
             - "-c"
