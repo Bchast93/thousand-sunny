@@ -121,7 +121,7 @@ spec:
         enabled: true
         existingClaim: cifs-downloads
         globalMounts:
-          - path: /data
+          - path: /downloads
       scripts:
         type: configMap
         name: bazarr-scripts
