@@ -5,6 +5,7 @@ kind: HelmRelease
 metadata:
   name: bazarr
 spec:
+  interval: 30m
   chart:
     spec:
       chart: app-template
@@ -13,67 +14,78 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  interval: 30m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
   dependsOn:
-    - name: sonarr
-    - name: radarr
+    - name: volsync
+      namespace: volsync-system
   values:
     controllers:
       bazarr:
-        type: statefulset
         annotations:
-          secret.reloader.stakater.com/reload: &secret bazarr-secret
-        initContainers:
-          01-init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16.4
-              pullPolicy: IfNotPresent
-            envFrom:
-              - secretRef:
-                  name: *secret
-        pod:
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 568
-            runAsGroup: 2000
-            fsGroup: 2000
-            fsGroupChangePolicy: OnRootMismatch
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
               repository: ghcr.io/onedr0p/bazarr
-              tag: 1.4.5
+              tag: 1.4.5@sha256:c0bf91443c32f3978777b4ddd2732908f51b157bbe00cd3259b23f7716bb4af7
             env:
-              TZ: ${TIMEZONE}
+              TZ: America/Chicago
             envFrom:
               - secretRef:
-                  name: *secret
+                  name: bazarr-secret
             probes:
               liveness: &probes
                 enabled: true
                 custom: true
                 spec:
                   httpGet:
-                    path: /api
+                    path: /health
                     port: &port 6767
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
                   failureThreshold: 3
               readiness: *probes
-              startup:
-                enabled: false
-            securityContext:
+            securityContext: &securityContext
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: {drop: ["ALL"]}
+              capabilities: { drop: ["ALL"] }
             resources:
               requests:
-                cpu: 50m
-                memory: 200Mi
+                cpu: 10m
               limits:
-                memory: 500Mi
+                memory: 1Gi
+          subcleaner:
+            image:
+              repository: registry.k8s.io/git-sync/git-sync
+              tag: v4.3.0@sha256:5813a7da0ccd58f6dfb9d5e48480e2877355e6bb3d7d81c8908eb1adc3a23b6e
+            env:
+              GITSYNC_REPO: https://github.com/KBlixt/subcleaner
+              GITSYNC_REF: master
+              GITSYNC_PERIOD: 24h
+              GITSYNC_ROOT: /add-ons
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 128Mi
+            securityContext: *securityContext
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        supplementalGroups: [10000]
+        seccompProfile: { type: RuntimeDefault }
     service:
       app:
         controller: bazarr
@@ -82,33 +94,39 @@ spec:
             port: *port
     ingress:
       app:
-        enabled: true
-        className: public
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Downloads
-          gethomepage.dev/name: Bazarr
-          gethomepage.dev/icon: bazarr.png
-          gethomepage.dev/description: Subtitles
-          gethomepage.dev/widget.type: bazarr
-          gethomepage.dev/widget.url: http://bazarr.downloads
-          gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_BAZARR_TOKEN}}` }}"
-          nginx.ingress.kubernetes.io/configuration-snippet: ${THEME_PARK_SNIPPET}
+        className: internal
         hosts:
-          - host: &host ${HOSTNAME}
+          - host: bazarr.${SECRET_DOMAIN}
             paths:
               - path: /
                 service:
                   identifier: app
                   port: http
-        tls: [hosts: [*host]]
     persistence:
+      add-ons:
+        type: emptyDir
+      cache:
+        type: emptyDir
+        globalMounts:
+          - path: /config/cache
       config:
-        enabled: true
-        existingClaim: ${VOLSYNC_CLAIM}
+        existingClaim: bazarr
+      log:
+        type: emptyDir
+        globalMounts:
+          - path: /config/log
       media:
         enabled: true
         existingClaim: cifs-downloads
         globalMounts:
-          - path: /media
+          - path: /data
+      scripts:
+        type: configMap
+        name: bazarr-scripts
+        defaultMode: 0775
+        globalMounts:
+          - readOnly: true
+      tmp:
+        type: emptyDir
