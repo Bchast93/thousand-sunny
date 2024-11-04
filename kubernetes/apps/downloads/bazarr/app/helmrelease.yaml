@@ -118,10 +118,9 @@ spec:
         globalMounts:
           - path: /config/log
       media:
-        enabled: true
         existingClaim: cifs-downloads
         globalMounts:
-          - path: /downloads
+          - path: /downloads/downloaded_subtitles
       scripts:
         type: configMap
         name: bazarr-scripts
