@@ -117,10 +117,14 @@ spec:
         type: emptyDir
         globalMounts:
           - path: /config/log
-      media:
-        existingClaim: cifs-downloads
+      tv:
+        existingClaim: cifs-tv
         globalMounts:
-          - path: /downloads/downloaded_subtitles
+          - path: /media/tv
+      movies:
+        existingClaim: cifs-movies
+        globalMounts:
+          - path: /media/movies
       scripts:
         type: configMap
         name: bazarr-scripts
