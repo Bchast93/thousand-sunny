@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: bazarr
+  name: &app bazarr
 spec:
   interval: 30m
   chart:
@@ -22,9 +22,9 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: volsync
-      namespace: volsync-system
+  valuesFrom:
+    - kind: ConfigMap
+      name: authelia-ingress-hv
   values:
     controllers:
       bazarr:
@@ -36,7 +36,7 @@ spec:
               repository: ghcr.io/onedr0p/bazarr
               tag: 1.4.5@sha256:c0bf91443c32f3978777b4ddd2732908f51b157bbe00cd3259b23f7716bb4af7
             env:
-              TZ: America/Chicago
+              TZ: "${TIMEZONE}"
             envFrom:
               - secretRef:
                   name: bazarr-secret
@@ -112,7 +112,7 @@ spec:
         globalMounts:
           - path: /config/cache
       config:
-        existingClaim: bazarr
+        existingClaim: bazarr-config
       log:
         type: emptyDir
         globalMounts:
