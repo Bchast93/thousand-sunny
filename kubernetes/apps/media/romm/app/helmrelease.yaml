@@ -90,7 +90,7 @@ spec:
             paths:
               - path: /
                 service:
-                  identifier: *app
+                  identifier: app
                   port: 8080
     persistence:
       configuration:
