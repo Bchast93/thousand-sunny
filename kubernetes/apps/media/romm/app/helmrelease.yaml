@@ -109,22 +109,22 @@ spec:
         globalMounts:
           - path: /media/games
       romm-data:
-        existingClaim: romm-data-pvc
+        existingClaim: romm-data
         globalMounts:
           - path: /romm
             readOnly: false
       romm-assets:
-        existingClaim: romm-assets-pvc
+        existingClaim: romm-assets
         globalMounts:
           - path: /romm/assets
             readOnly: false
       romm-resources:
-        existingClaim: romm-resources-pvc
+        existingClaim: romm-resources
         globalMounts:
           - path: /romm/resources
             readOnly: false
       romm-redis-data:
-        existingClaim: romm-redis-data-pvc
+        existingClaim: romm-redis-data
         globalMounts:
           - path: /redis-data
             readOnly: false
