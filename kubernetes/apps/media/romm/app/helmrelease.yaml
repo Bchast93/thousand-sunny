@@ -91,7 +91,7 @@ spec:
               - path: /
                 service:
                   identifier: app
-                  port: 8080
+                  port: http
     persistence:
       configuration:
         type: configMap
