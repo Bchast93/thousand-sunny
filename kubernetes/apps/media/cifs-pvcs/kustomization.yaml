@@ -9,3 +9,4 @@ resources:
   - ../../../templates/csi-driver-smb/claims/cifs-pictures.yaml
   - ../../../templates/csi-driver-smb/claims/cifs-tv.yaml
   - ../../../templates/csi-driver-smb/claims/cifs-videos.yaml
+  - ../../../templates/csi-driver-smb/claims/cifs-games.yaml

@@ -52,31 +52,21 @@ spec:
               ENABLE_RESCAN_ON_FILESYSTEM_CHANGE: "true"
               RESCAN_ON_FILESYSTEM_CHANGE_DELAY: 5
             envFrom: *envFrom
-            probes:
-              liveness: &probes
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /ping
-                    port: *port
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 3
-                  failureThreshold: 5
-              readiness: *probes
-              startup:
-                enabled: false
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: { drop: [ "ALL" ] }
-            resources:
-              requests:
-                cpu: 10m
-                memory: 128Mi
-              limits:
-                memory: 512Mi
+            # probes:
+            #   liveness: &probes
+            #     enabled: true
+            #     custom: true
+            #     spec:
+            #       httpGet:
+            #         path: /ping
+            #         port: *port
+            #       initialDelaySeconds: 0
+            #       periodSeconds: 10
+            #       timeoutSeconds: 3
+            #       failureThreshold: 5
+            #   readiness: *probes
+            #   startup:
+            #     enabled: false
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
@@ -85,6 +75,8 @@ spec:
         fsGroup: 568
         fsGroupChangePolicy: OnRootMismatch
         seccompProfile: { type: RuntimeDefault }
+        supplementalGroups:
+          - 1568
     service:
       app:
         controller: *app
@@ -96,15 +88,6 @@ spec:
         className: internal
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Downloads
-          gethomepage.dev/name: Prowlarr
-          gethomepage.dev/icon: prowlarr.png
-          gethomepage.dev/description: Torrent/NZB Indexer Management
-          gethomepage.dev/widget.type: prowlarr
-          gethomepage.dev/widget.url: http://prowlarr.downloads
-          gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_PROWLARR_TOKEN}}` }}"
-          nginx.ingress.kubernetes.io/configuration-snippet: ${THEME_PARK_SNIPPET}
         hosts:
           - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
@@ -113,7 +96,43 @@ spec:
                   identifier: app
                   port: http
     persistence:
-      config:
+      configuration:
+        type: configMap
+        name: romm-config
+        globalMounts:
+          - path: /romm/config/config.yml
+            subPath: config.yml
+        defaultMode: 0664
+      romm-config:
         type: emptyDir
+        globalMounts:
+          - path: /romm/config
+      games:
+        existingClaim: cifs-games
+        globalMounts:
+          - path: /media/games
+      romm-data:
+        existingClaim: ${DATA_CLAIM}
+        globalMounts:
+          - path: /romm
+            readOnly: false
+      romm-assets:
+        existingClaim: ${ASSETS_CLAIM}
+        globalMounts:
+          - path: /romm/assets
+            readOnly: false
+      romm-resources:
+        existingClaim: ${RESOURCES_CLAIM}
+        globalMounts:
+          - path: /romm/resources
+            readOnly: false
+      romm-redis-data:
+        existingClaim: ${REDIS_DATA_CLAIM}
+        globalMounts:
+          - path: /redis-data
+            readOnly: false
       tmp:
         type: emptyDir
+        medium: Memory
+        globalMounts:
+          - path: /tmp
