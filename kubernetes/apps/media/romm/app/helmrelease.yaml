@@ -90,8 +90,8 @@ spec:
             paths:
               - path: /
                 service:
-                  identifier: app
-                  port: port
+                  identifier: *app
+                  port: 8080
     persistence:
       configuration:
         type: configMap
