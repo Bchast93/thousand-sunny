@@ -10,4 +10,4 @@ resources:
   - ./tautulli/ks.yaml
   - ./theme-park/ks.yaml
   - ./recyclarr/ks.yaml
-  # - ./romm/ks.yaml
+
