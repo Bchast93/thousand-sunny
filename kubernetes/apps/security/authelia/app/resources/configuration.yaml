@@ -132,5 +132,5 @@ identity_providers:
         require_pkce: true
         pkce_challenge_method: 'S256'
         scopes: ["openid", "profile", "groups", "email"]
-        redirect_uris: ["https://mealie.${SECRET_DOMAIN}/login"]
+        redirect_uris: ["https://recipes.${SECRET_DOMAIN}/login"]
         userinfo_signed_response_alg: none
