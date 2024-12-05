@@ -126,7 +126,7 @@ identity_providers:
       - client_id: mealie
         client_name: Mealie
         client_secret: "{{ .MEALIE_OAUTH_CLIENT_SECRET }}"
-        public: true
+        public: false
         authorization_policy: two_factor
         pre_configured_consent_duration: 1y
         require_pkce: true
