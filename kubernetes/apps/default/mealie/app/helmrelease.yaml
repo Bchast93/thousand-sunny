@@ -46,6 +46,13 @@ spec:
               PUID: 65534
               PGID: 65534
               DB_ENGINE: postgres
+              OIDC_AUTH_ENABLED: true
+              OIDC_SIGNUP_ENABLED: true
+              OIDC_CONFIGURATION_URL: "https://auth.${SECRET_DOMAIN}/.well-known/openid-configuration"
+              OIDC_CLIENT_ID: mealie
+              OIDC_AUTO_REDIRECT: false
+              OIDC_ADMIN_GROUP: mealie-admins
+              OIDC_USER_GROUP: mealie-users
             envFrom: *envFrom
             securityContext:
               allowPrivilegeEscalation: false
