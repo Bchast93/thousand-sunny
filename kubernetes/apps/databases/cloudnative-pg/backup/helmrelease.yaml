@@ -35,7 +35,7 @@ spec:
           app:
             image:
               repository: ghcr.io/cloudnative-pg/postgresql
-              tag: 17.2-9@sha256:345fcbc8043942738635972c8a3379135f9d3ef60d6d601dbff4d3f86690732d
+              tag: 17.4-9@sha256:507376cb4fb29498d767fbc1ed5c3a9ee6099136d3519be69bdb463b92b5120e
             env:
               TZ: "${TIMEZONE}"
               PGHOST: postgres-rw.databases
