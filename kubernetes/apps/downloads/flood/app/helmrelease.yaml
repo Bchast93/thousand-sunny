@@ -81,7 +81,7 @@ spec:
             dependsOn: app
             image:
               repository: docker.io/evanofslack/transmission-exporter
-              tag: latest@sha256:b68569f58c7beeac5eab2ba6747310116990ea9534262eff64c269bef3e794ee
+              tag: latest@sha256:eff55a905b89005ccead91f381133677b1a70c58d26814e4b107bf3564320b6c
             env:
               TRANSMISSION_ADDR: http://flood:9091
             resources:
