@@ -25,7 +25,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      VOLSYNC_CAPACITY: 40Gi
-      VOLSYNC_CACHE_CAPACITY: 40Gi
+      VOLSYNC_CAPACITY: 80Gi
+      VOLSYNC_CACHE_CAPACITY: 80Gi
       VOLSYNC_CLAIM: plex-config
       GATUS_PATH: /web/index.html
