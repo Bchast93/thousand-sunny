@@ -30,8 +30,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/home-operations/
-              tag: plex:sha256-0c31ee1ebee0b63ead2de2accc6c52b1e65e9322b39118715eeac8b2f2bb786f
+              repository: ghcr.io/home-operations/plex
+              tag: 1.41.7.9799@sha256:0c31ee1ebee0b63ead2de2accc6c52b1e65e9322b39118715eeac8b2f2bb786f
             env:
               TZ: "${TIMEZONE}"
               ALLOWED_NETWORKS: "${LAN_CIDR},${CLUSTER_CIDR},${SERVICE_CIDR}"
