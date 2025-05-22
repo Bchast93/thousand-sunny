@@ -11,7 +11,7 @@ resources:
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
   - ./sonarr/ks.yaml
-  - ./readarr/ks.yaml
+  # - ./readarr/ks.yaml
   - ./unpackerr/ks.yaml
   - ./bazarr/ks.yaml
 configMapGenerator:
