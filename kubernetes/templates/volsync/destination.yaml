@@ -21,3 +21,10 @@ spec:
       runAsGroup: ${VOLSYNC_GID:-568}
       fsGroup: ${VOLSYNC_GID:-568}
     capacity: ${VOLSYNC_CAPACITY:-2Gi}
+    resources:
+      requests:
+        memory: "2Gi"
+        cpu: "500m"
+      limits:
+        memory: "6Gi"
+        cpu: "2"
