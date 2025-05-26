@@ -17,11 +17,24 @@ cgroup:
   hostRoot: /sys/fs/cgroup
 # NOTE: devices might need to be set if you have more than one active NIC on your hosts
 # devices: eno+ eth+
+<<<<<<< HEAD
 endpointRoutes:
   enabled: true
 envoy:
   enabled: false
 dashboards:
+=======
+dashboards:
+  enabled: true
+endpointRoutes:
+  enabled: true
+envoy:
+  rollOutPods: true
+  prometheus:
+     serviceMonitor:
+       enabled: true
+gatewayAPI:
+>>>>>>> upstream/main
   enabled: true
 hubble:
   enabled: false

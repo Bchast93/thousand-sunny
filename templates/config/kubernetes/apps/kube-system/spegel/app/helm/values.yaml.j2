@@ -1,13 +1,24 @@
 #% if spegel_enabled %#
 ---
+<<<<<<< HEAD
 grafanaDashboard:
   enabled: true
+=======
+spegel:
+  containerdSock: /run/containerd/containerd.sock
+  containerdRegistryConfigPath: /etc/cri/conf.d/hosts
+>>>>>>> upstream/main
 service:
   registry:
     hostPort: 29999
 serviceMonitor:
   enabled: true
+<<<<<<< HEAD
 spegel:
   containerdSock: /run/containerd/containerd.sock
   containerdRegistryConfigPath: /etc/cri/conf.d/hosts
+=======
+grafanaDashboard:
+  enabled: true
+>>>>>>> upstream/main
 #% endif %#

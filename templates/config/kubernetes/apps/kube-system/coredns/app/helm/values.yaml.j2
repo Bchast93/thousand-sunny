@@ -21,6 +21,7 @@ servers:
         configBlock: |-
           lameduck 5s
       - name: ready
+<<<<<<< HEAD
       - name: log
         configBlock: |-
           class error
@@ -38,6 +39,29 @@ servers:
       - name: loop
       - name: reload
       - name: loadbalance
+=======
+      - name: kubernetes
+        parameters: cluster.local in-addr.arpa ip6.arpa
+        configBlock: |-
+          pods verified
+          fallthrough in-addr.arpa ip6.arpa
+      - name: autopath
+        parameters: "@kubernetes"
+      - name: forward
+        parameters: . /etc/resolv.conf
+      - name: cache
+        configBlock: |-
+          prefetch 20
+          serve_stale
+      - name: loop
+      - name: reload
+      - name: loadbalance
+      - name: prometheus
+        parameters: 0.0.0.0:9153
+      - name: log
+        configBlock: |-
+          class error
+>>>>>>> upstream/main
 affinity:
   nodeAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:

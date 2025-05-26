@@ -7,7 +7,11 @@ Welcome to my minimalist template for deploying a single Kubernetes cluster. The
 A Kubernetes cluster deployed with [Talos Linux](https://github.com/siderolabs/talos) and an opinionated implementation of [Flux](https://github.com/fluxcd/flux2) using [GitHub](https://github.com/) as the Git provider, [sops](https://github.com/getsops/sops) to manage secrets and [cloudflared](https://github.com/cloudflare/cloudflared) to access applications external to your local network.
 
 - **Required:** Some knowledge of [Containers](https://opencontainers.org/), [YAML](https://noyaml.com/), [Git](https://git-scm.com/), and a **Cloudflare account** with a **domain**.
+<<<<<<< HEAD
 - **Included components:** [flux](https://github.com/fluxcd/flux2), [cilium](https://github.com/cilium/cilium), [cert-manager](https://github.com/cert-manager/cert-manager), [spegel](https://github.com/spegel-org/spegel), [reloader](https://github.com/stakater/Reloader), [ingress-nginx](https://github.com/kubernetes/ingress-nginx/), [external-dns](https://github.com/kubernetes-sigs/external-dns) and [cloudflared](https://github.com/cloudflare/cloudflared).
+=======
+- **Included components:** [flux](https://github.com/fluxcd/flux2), [cilium](https://github.com/cilium/cilium), [cert-manager](https://github.com/cert-manager/cert-manager), [spegel](https://github.com/spegel-org/spegel), [reloader](https://github.com/stakater/Reloader), [external-dns](https://github.com/kubernetes-sigs/external-dns) and [cloudflared](https://github.com/cloudflare/cloudflared).
+>>>>>>> upstream/main
 
 **Other features include:**
 
@@ -171,6 +175,7 @@ There are **5 stages** outlined below for completing this project, make sure you
     flux get hr -A
     ```
 
+<<<<<<< HEAD
 3. Check TCP connectivity to both the ingress controllers:
 
     ```sh
@@ -178,6 +183,15 @@ There are **5 stages** outlined below for completing this project, make sure you
     ```
 
 4. Check you can resolve DNS for `echo`, this should resolve to `${cluster_ingress_addr}`:
+=======
+3. Check TCP connectivity to both the internal and external gateways:
+
+    ```sh
+    nmap -Pn -n -p 443 ${cluster_gateway_addr} ${cloudflare_gateway_addr} -vv
+    ```
+
+4. Check you can resolve DNS for `echo`, this should resolve to `${cluster_gateway_addr}`:
+>>>>>>> upstream/main
 
     ```sh
     dig @${cluster_dns_gateway_addr} echo.${cloudflare_domain}
@@ -192,14 +206,24 @@ There are **5 stages** outlined below for completing this project, make sure you
 ### 🌐 Public DNS
 
 > [!TIP]
+<<<<<<< HEAD
 > Use the `external` ingress class to make applications public to the internet.
 
 The `external-dns` application created in the `network` namespace will handle creating public DNS records. By default, `echo` and the `flux-webhook` are the only subdomains reachable from the public internet. In order to make additional applications public you must **set the correct ingress class name and ingress annotations** like in the HelmRelease for `echo`.
+=======
+> Use the `external` gateway on `HTTPRoutes` to make applications public to the internet.
+
+The `external-dns` application created in the `network` namespace will handle creating public DNS records. By default, `echo` and the `flux-webhook` are the only subdomains reachable from the public internet. In order to make additional applications public you must **set the correct gateway** like in the HelmRelease for `echo`.
+>>>>>>> upstream/main
 
 ### 🏠 Home DNS
 
 > [!TIP]
+<<<<<<< HEAD
 > Use the `internal` ingress class to make applications private to your network. If you're having trouble with internal DNS resolution check out [this](https://github.com/onedr0p/cluster-template/discussions/719) GitHub discussion.
+=======
+> Use the `internal` gateway on `HTTPRoutes` to make applications private to your network. If you're having trouble with internal DNS resolution check out [this](https://github.com/onedr0p/cluster-template/discussions/719) GitHub discussion.
+>>>>>>> upstream/main
 
 `k8s_gateway` will provide DNS resolution to external Kubernetes resources (i.e. points of entry to the cluster) from any device that uses your home DNS server. For this to work, your home DNS server must be configured to forward DNS queries for `${cloudflare_domain}` to `${cluster_dns_gateway_addr}` instead of the upstream DNS server(s) it normally uses. This is a form of **split DNS** (aka split-horizon DNS / conditional forwarding).
 
@@ -364,12 +388,45 @@ The cluster is your oyster (or something like that). Below are some optional con
 
 ### DNS
 
+<<<<<<< HEAD
 Instead of using [k8s_gateway](https://github.com/ori-edge/k8s_gateway) to provide DNS for your applications you might want to check out [external-dns](https://github.com/kubernetes-sigs/external-dns), there is wide support for many different DNS providers such as [Pi-hole](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/pihole.md), [UniFi](https://github.com/kashalls/external-dns-unifi-webhook), [Adguard Home](https://github.com/muhlba91/external-dns-provider-adguard), [Bind](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/rfc2136.md) and more.
 
 ### Storage
 
 You might find you need persistent storage for your workloads with features like replicated storage or to connect to a NFS/SMB/iSCSI server. If you need any of those features be sure to check out the projects like [rook-ceph](https://github.com/rook/rook), [longhorn](https://github.com/longhorn/longhorn), [openebs](https://github.com/openebs/openebs), [democratic-csi](https://github.com/democratic-csi/democratic-csi), [csi-driver-nfs](https://github.com/kubernetes-csi/csi-driver-nfs), [csi-driver-smb](https://github.com/kubernetes-csi/csi-driver-smb)
 or [synology-csi](https://github.com/SynologyOpenSource/synology-csi).
+=======
+If you're currently using [k8s_gateway](https://github.com/ori-edge/k8s_gateway) to provide DNS for your applications, consider exploring [external-dns](https://github.com/kubernetes-sigs/external-dns).
+
+External-DNS offers broad support for various DNS providers, including but not limited to:
+
+- [Pi-hole](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/pihole.md)
+- [UniFi](https://github.com/kashalls/external-dns-unifi-webhook)
+- [Adguard Home](https://github.com/muhlba91/external-dns-provider-adguard)
+- [Bind](https://github.com/kubernetes-sigs/external-dns/blob/master/docs/tutorials/rfc2136.md)
+
+This flexibility allows you to integrate seamlessly with a range of DNS solutions to suit your environment and offload DNS from your cluster to your router, or external device.
+
+### Secrets
+
+SOPs is an excellent tool for managing secrets in a GitOps workflow. However, it can become cumbersome when rotating secrets or maintaining a single source of truth for secret items.
+
+For a more streamlined approach to those issues, consider [External Secrets](https://external-secrets.io/latest/). This tool allows you to move away from SOPs and leverage an external provider for managing your secrets. External Secrets supports a wide range of providers, from cloud-based solutions to self-hosted options.
+
+### Storage
+
+If your workloads require persistent storage with features like replication or connectivity to NFS, SMB, or iSCSI servers, there are several projects worth exploring:
+
+- [rook-ceph](https://github.com/rook/rook)
+- [longhorn](https://github.com/longhorn/longhorn)
+- [openebs](https://github.com/openebs/openebs)
+- [democratic-csi](https://github.com/democratic-csi/democratic-csi)
+- [csi-driver-nfs](https://github.com/kubernetes-csi/csi-driver-nfs)
+- [csi-driver-smb](https://github.com/kubernetes-csi/csi-driver-smb)
+- [synology-csi](https://github.com/SynologyOpenSource/synology-csi)
+
+These tools offer a variety of solutions to meet your persistent storage needs, whether you’re using cloud-native or self-hosted infrastructures.
+>>>>>>> upstream/main
 
 ### Community Repositories
 

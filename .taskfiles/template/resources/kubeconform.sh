@@ -12,7 +12,11 @@ kubeconform_args=(
     "-strict"
     "-ignore-missing-schemas"
     "-skip"
+<<<<<<< HEAD
     "Secret"
+=======
+    "Gateway,HTTPRoute,Secret"
+>>>>>>> upstream/main
     "-schema-location"
     "default"
     "-schema-location"

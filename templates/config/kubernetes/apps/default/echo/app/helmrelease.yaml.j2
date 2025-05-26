@@ -17,7 +17,11 @@ spec:
     remediation:
       retries: 3
   dependsOn:
+<<<<<<< HEAD
     - name: cloudflared
+=======
+    - name: cloudflare-tunnel
+>>>>>>> upstream/main
       namespace: network
   values:
     controllers:
@@ -27,7 +31,11 @@ spec:
           app:
             image:
               repository: ghcr.io/mendhak/http-https-echo
+<<<<<<< HEAD
               tag: 36
+=======
+              tag: 37
+>>>>>>> upstream/main
             env:
               HTTP_PORT: &port 80
               LOG_WITHOUT_NEWLINE: true
@@ -72,6 +80,7 @@ spec:
         serviceName: echo
         endpoints:
           - port: http
+<<<<<<< HEAD
             scheme: http
             path: /metrics
             interval: 1m
@@ -88,3 +97,16 @@ spec:
                 service:
                   identifier: app
                   port: http
+=======
+    route:
+      app:
+        hostnames: ["{{ .Release.Name }}.${SECRET_DOMAIN}"]
+        parentRefs:
+          - name: external
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
+>>>>>>> upstream/main

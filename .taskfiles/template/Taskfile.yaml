@@ -125,7 +125,11 @@ tasks:
     cmds:
       - for:
           matrix:
+<<<<<<< HEAD
             RESOURCE: [certificates, certificaterequests, gitrepositories, helmrepositories, helmreleases, ingresses, kustomizations, nodes, pods]
+=======
+            RESOURCE: [certificates, certificaterequests, gitrepositories, helmrepositories, helmreleases, httproutes, kustomizations, nodes, pods]
+>>>>>>> upstream/main
         cmd: kubectl get --all-namespaces {{.ITEM.RESOURCE}}
     preconditions:
       - test -f {{.KUBECONFIG}}

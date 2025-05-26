@@ -22,7 +22,11 @@ function log() {
     local configured_priority=${level_priority[$configured_level]:-2}
 
     # Skip log messages below the configured log level
+<<<<<<< HEAD
     if (( current_priority < configured_priority )); then
+=======
+    if ((current_priority < configured_priority)); then
+>>>>>>> upstream/main
         return
     fi
 
@@ -59,7 +63,11 @@ function log() {
 
     # Print the log message
     printf "%s %b%s%b %s %b\n" "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+<<<<<<< HEAD
         "${color}" "${level^^}" "\033[0m" "${msg}" "${data}" > "${output_stream}"
+=======
+        "${color}" "${level^^}" "\033[0m" "${msg}" "${data}" >"${output_stream}"
+>>>>>>> upstream/main
 
     # Exit if the log level is error
     if [[ "$level" == "error" ]]; then
@@ -71,10 +79,19 @@ function log() {
 function check_env() {
     local envs=("${@}")
     local missing=()
+<<<<<<< HEAD
+=======
+    local values=()
+>>>>>>> upstream/main
 
     for env in "${envs[@]}"; do
         if [[ -z "${!env-}" ]]; then
             missing+=("${env}")
+<<<<<<< HEAD
+=======
+        else
+            values+=("${env}=${!env}")
+>>>>>>> upstream/main
         fi
     done
 
@@ -82,7 +99,11 @@ function check_env() {
         log error "Missing required env variables" "envs=${missing[*]}"
     fi
 
+<<<<<<< HEAD
     log debug "Env variables are set" "envs=${envs[*]}"
+=======
+    log debug "Env variables are set" "envs=${values[*]}"
+>>>>>>> upstream/main
 }
 
 # Check if required CLI tools are installed

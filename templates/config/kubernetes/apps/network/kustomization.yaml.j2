@@ -5,7 +5,14 @@ kind: Kustomization
 namespace: network
 components:
   - ../../components/common
+<<<<<<< HEAD
   - ../../components/repos/app-template
 resources:
   - ./external/ks.yaml
   - ./internal/ks.yaml
+=======
+resources:
+  - ./cloudflare-dns/ks.yaml
+  - ./cloudflare-tunnel/ks.yaml
+  - ./k8s-gateway/ks.yaml
+>>>>>>> upstream/main
