@@ -22,7 +22,8 @@ cniConfig:
 nodes:
   - hostname: "luffy"
     ipAddress: "10.100.151.10"
-    installDisk: "/dev/nvme0n1"
+    installDiskSelector:
+      serial: "24494CA7AEBF"
     machineSpec:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/1e17720baa2217bdf64a7caa256011144fce07af5dd12ce18baed735789e7c81
@@ -41,7 +42,8 @@ nodes:
           ip: "10.100.151.30"
   - hostname: "zoro"
     ipAddress: "10.100.151.11"
-    installDisk: "/dev/nvme0n1"
+    installDiskSelector:
+      serial: "24494CA7AED1"
     machineSpec:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/1e17720baa2217bdf64a7caa256011144fce07af5dd12ce18baed735789e7c81
@@ -60,7 +62,8 @@ nodes:
           ip: "10.100.151.30"
   - hostname: "sanji"
     ipAddress: "10.100.151.12"
-    installDisk: "/dev/nvme0n1"
+    installDiskSelector:
+      serial: "24494CA7AED0"
     machineSpec:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/1e17720baa2217bdf64a7caa256011144fce07af5dd12ce18baed735789e7c81
@@ -80,7 +83,7 @@ nodes:
   - hostname: "nami"
     ipAddress: "10.100.151.13"
     installDiskSelector:
-      serial: "nvme0n1"
+      serial: "25034D7FFF2E"
     machineSpec:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/1e17720baa2217bdf64a7caa256011144fce07af5dd12ce18baed735789e7c81
@@ -100,7 +103,7 @@ nodes:
   - hostname: "jinbe"
     ipAddress: "10.100.151.14"
     installDiskSelector:
-      serial: "nvme0n1"
+      serial: "24494CA7D8D9"
     machineSpec:
       secureboot: false
     talosImageURL: factory.talos.dev/installer/da5511b82baadb9d21cf8f1fcc93cb16cd3af4c3805433b35cde48b8866eeb39
