@@ -37,7 +37,7 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app self-signed-issuers
-  namespace: flux-system
+  namespace: &namespace cert-manager
 spec:
   targetNamespace: cert-manager
   commonMetadata:
@@ -49,7 +49,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-kubernetes
+    name: flux-system
   wait: true
   interval: 30m
   retryInterval: 1m
