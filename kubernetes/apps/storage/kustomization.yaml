@@ -8,5 +8,4 @@ resources:
   - ./namespace.yaml
   - ./csi-driver-smb/ks.yaml
   # - ./volsync/ks.yaml
-  - ./openebs/ks.yaml
   # - ./rook-ceph/ks.yaml
