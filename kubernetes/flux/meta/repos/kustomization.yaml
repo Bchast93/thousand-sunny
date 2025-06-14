@@ -9,3 +9,6 @@ resources:
   - ./external-secrets.yaml
   - ./jetstack.yaml
   - ./stakater.yaml
+  - ./cilium.yaml
+  - ./k8s-gateway.yaml
+  - ./ingress-nginx.yaml
