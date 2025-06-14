@@ -4,6 +4,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: &name home-selfsigned-ca
+  namespace: &namespace cert-manager
 spec:
   isCA: true
   commonName: *name
