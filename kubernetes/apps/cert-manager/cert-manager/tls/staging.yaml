@@ -9,7 +9,7 @@ spec:
   issuerRef:
     name: letsencrypt-staging
     kind: ClusterIssuer
-  commonName: "${SECRET_DOMAIN}"
+  commonName: "devilfruitlabs.com"
   dnsNames:
-    - "${SECRET_DOMAIN}"
-    - "*.${SECRET_DOMAIN}"
+    - "devilfruitlabs.com"
+    - "*.devilfruitlabs.com"
