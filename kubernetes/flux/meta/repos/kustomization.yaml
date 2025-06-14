@@ -13,3 +13,6 @@ resources:
   - ./k8s-gateway.yaml
   - ./ingress-nginx.yaml
   - ./csi-driver-smb.yaml
+  - ./openebs.yaml
+  - ./rook-ceph.yaml
+  - ./backube.yaml
