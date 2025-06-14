@@ -12,3 +12,4 @@ resources:
   - ./cilium.yaml
   - ./k8s-gateway.yaml
   - ./ingress-nginx.yaml
+  - ./csi-driver-smb.yaml
