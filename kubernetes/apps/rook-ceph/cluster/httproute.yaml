@@ -1,5 +1,3 @@
----
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/gateway.networking.k8s.io/httproute_v1.json
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
@@ -7,11 +5,3 @@ metadata:
 spec:
   hostnames: ["rook.devilfruitlabs.com"]
   parentRefs:
-    - name: internal
-      namespace: kube-system
-      sectionName: https
-  rules:
-    - backendRefs:
-        - name: rook-ceph-mgr-dashboard
-          namespace: rook-ceph
-          port: 7000
