@@ -5,8 +5,10 @@ source "$(dirname "${0}")/lib/common.sh"
 
 export LOG_LEVEL="debug"
 export ROOT_DIR="$(git rev-parse --show-toplevel)"
-export ROOK_DISK="/dev/nvme0n1
-"function wipe_rook_disks() {
+export ROOK_DISK="/dev/nvme0n1"
+
+
+function wipe_rook_disks() {
     log debug "Wiping Rook disks"
 
     # Skip disk wipe if Rook is detected running in the cluster
@@ -42,6 +44,7 @@ export ROOK_DISK="/dev/nvme0n1
         done
     done
 }
+
 
 # Talos requires the nodes to be 'Ready=False' before applying resources
 function wait_for_nodes() {
