@@ -4,6 +4,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: &app plex
+  namespace: media
 spec:
   interval: 1h
   chartRef:
@@ -107,7 +108,9 @@ spec:
                 port: *port
     persistence:
       config:
-        existingClaim: plex-config
+        existingClaim: *app
+        globalMounts:
+          - path: /config/Library/Application Support/Plex Media Server
       cache:
         storageClass: ceph-block
         accessMode: ReadWriteOnce
