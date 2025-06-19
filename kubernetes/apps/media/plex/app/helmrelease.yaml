@@ -110,17 +110,15 @@ spec:
       config:
         existingClaim: *app
         globalMounts:
-          - path: /config/Library/Application Support/Plex Media Server
-      cache:
-        storageClass: ceph-block
-        accessMode: ReadWriteOnce
-        size: 100Gi
+          - path: "/config/Library/Application Support/Plex Media Server"
+      config-cache:
+        existingClaim: plex-cache
         globalMounts:
-          - path: "/config/Library/Application Support/Plex Media Server/Cache"
+          - path: /config/Library/Application Support/Plex Media Server/Cache
       logs:
         type: emptyDir
         globalMounts:
-          - path: /config/Library/Application Support/Plex Media Server/Logs
+          - path: "/config/Library/Application Support/Plex Media Server/Logs"
       tmp:
         type: emptyDir
       transcode:
