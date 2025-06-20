@@ -38,6 +38,10 @@ spec:
       namespace: openebs-system
   interval: 30m
   path: ./kubernetes/apps/database/crunchy-postgres/cluster
+  postBuild:
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
   prune: true
   sourceRef:
     kind: GitRepository
