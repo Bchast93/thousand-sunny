@@ -11,6 +11,7 @@ spec:
       name: pgadmin-secret
       key: PGADMIN_PASSWORD
   dataVolumeClaimSpec:
+    storageClassName: openebs
     accessModes:
     - ReadWriteOnce
     resources:
