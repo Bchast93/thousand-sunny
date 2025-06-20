@@ -8,3 +8,5 @@ resources:
   - ./openebs.yaml
   - ./rook-ceph.yaml
   - ./node-feature-discovery.yaml
+  - ./crunchy-userinit.yaml
+  - ./crunchydata.yaml
