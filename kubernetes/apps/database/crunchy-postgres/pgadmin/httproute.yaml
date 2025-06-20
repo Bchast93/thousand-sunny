@@ -13,7 +13,7 @@ spec:
   rules:
     - backendRefs:
         - name: pgadmin
-          namespace: databases
+          namespace: database
           port: 5050
       matches:
         - path:

@@ -3,7 +3,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../../../../shared/claims/cifs-downloads.yaml
-  - ../../../../shared/claims/cifs-misc.yaml
-  - ../../../../shared/claims/cifs-movies.yaml
-  - ../../../../shared/claims/cifs-tv.yaml
+  - ../../../../components/common/csi-driver-smb/claims/cifs-downloads.yaml
+  - ../../../../components/common/csi-driver-smb/claims/cifs-misc.yaml
+  - ../../../../components/common/csi-driver-smb/claims/cifs-movies.yaml
+  - ../../../../components/common/csi-driver-smb/claims/cifs-tv.yaml
