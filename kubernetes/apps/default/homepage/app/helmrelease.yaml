@@ -1,0 +1,142 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &name homepage
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    controllers:
+      homepage:
+        replicas: 2
+        strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/gethomepage/homepage
+              tag: v1.0.4
+            env:
+              TZ: ${TIMEZONE}
+            envFrom:
+              - secretRef:
+                  name: *app
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 15m
+                memory: 128Mi
+              limits:
+                memory: 768Mi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: 3000
+    serviceAccount:
+      create: true
+      name: *app
+    rbac:
+      roles:
+        app:
+          forceRename: *app
+          type: ClusterRole
+          rules:
+            - apiGroups: [""]
+              resources: ["namespaces", "nodes", "pods"]
+              verbs: ["get", "list"]
+
+            - apiGroups: ["extensions", "networking.k8s.io"]
+              resources: ["ingresses"]
+              verbs: ["get", "list"]
+
+            - apiGroups: ["metrics.k8s.io"]
+              resources: ["nodes", "pods"]
+              verbs: ["get", "list"]
+
+            - apiGroups: ["apiextensions.k8s.io"]
+              resources: ["customresourcedefinitions/status"]
+              verbs: ["get"]
+      bindings:
+        app:
+          forceRename: *app
+          type: ClusterRoleBinding
+          roleRef:
+            kind: ClusterRole
+            name: *app
+            apiGroup: rbac.authorization.k8s.io
+          subjects:
+            - kind: ServiceAccount
+              name: *app
+              namespace: default
+    ingress:
+      app:
+        className: internal
+        hosts:
+          - host: "home.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  identifier: app
+                  port: http
+    persistence:
+      logs:
+        type: emptyDir
+        globalMounts:
+          - path: /app/config/logs
+      config:
+        type: emptyDir
+        globalMounts:
+          - path: /app/config
+      services:
+        type: secret
+        name: *app
+        globalMounts:
+          - subPath: services.yaml
+            path: /app/config/services.yaml
+            readOnly: true
+      configmap:
+        type: configMap
+        name: *app
+        globalMounts:
+          - subPath: bookmarks.yaml
+            path: /app/config/bookmarks.yaml
+            readOnly: true
+          - subPath: docker.yaml
+            path: /app/config/docker.yaml
+            readOnly: true
+          - subPath: kubernetes.yaml
+            path: /app/config/kubernetes.yaml
+            readOnly: true
+          - subPath: settings.yaml
+            path: /app/config/settings.yaml
+            readOnly: true
+          - subPath: widgets.yaml
+            path: /app/config/widgets.yaml
+            readOnly: true
