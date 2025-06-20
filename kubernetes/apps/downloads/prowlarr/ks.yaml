@@ -16,7 +16,7 @@ spec:
   dependsOn:
     - name: crunchy-postgres-cluster
       namespace: database
-    - name: external-secrets-stores
+    - name: external-secrets
       namespace: external-secrets
     - name: volsync
       namespace: storage

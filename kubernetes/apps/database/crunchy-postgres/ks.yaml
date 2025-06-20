@@ -32,7 +32,7 @@ spec:
   dependsOn:
     - name: crunchy-postgres-operator
       namespace: database
-    - name: external-secrets-stores
+    - name: external-secrets
       namespace: external-secrets
     - name: openebs-hostpath
       namespace: openebs-system
@@ -84,7 +84,7 @@ spec:
   dependsOn:
     - name: crunchy-postgres-cluster
       namespace: database
-    - name: external-secrets-stores
+    - name: external-secrets
       namespace: external-secrets
   interval: 30m
   path: ./kubernetes/apps/database/crunchy-postgres/pgadmin

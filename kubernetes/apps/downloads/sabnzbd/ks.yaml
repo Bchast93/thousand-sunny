@@ -16,7 +16,7 @@ spec:
   dependsOn:
     - name: cifs-pvcs-downloads
       namespace: downloads
-    - name: external-secrets-stores
+    - name: external-secrets
       namespace: external-secrets
     - name: volsync
       namespace: storage
