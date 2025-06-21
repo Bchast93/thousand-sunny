@@ -109,7 +109,7 @@ spec:
             scrapeTimeout: 10s
     route:
       app:
-        hostnames: ["{{ .Release.Name }}.${SECRET_DOMAIN}"]
+        hostnames: ["auth.${SECRET_DOMAIN}"]
         parentRefs:
           - name: external
             namespace: kube-system
