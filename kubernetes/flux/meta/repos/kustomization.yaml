@@ -10,3 +10,4 @@ resources:
   - ./node-feature-discovery.yaml
   - ./crunchy-userinit.yaml
   - ./crunchydata.yaml
+  - ./angelnu-charts.yaml
