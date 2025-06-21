@@ -112,25 +112,18 @@ spec:
             path: /metrics
             interval: 1m
             scrapeTimeout: 10s
-    ingress:
+    route:
       app:
-        className: internal
-        annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Downloads
-          gethomepage.dev/name: Flood
-          gethomepage.dev/icon: flood
-          gethomepage.dev/description: Bittorrent UI
-          gethomepage.dev/widget.type: flood
-          gethomepage.dev/widget.url: http://flood.downloads
-          nginx.ingress.kubernetes.io/configuration-snippet: ${THEME_PARK_SNIPPET}
-        hosts:
-          - host: "flood.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames: ["{{ .Release.Name }}.devilfruitlabs.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
+                namespace: downloads
     persistence:
       config:
         existingClaim: *app

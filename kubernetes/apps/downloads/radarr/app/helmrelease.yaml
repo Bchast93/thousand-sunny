@@ -75,26 +75,18 @@ spec:
         ports:
           http:
             port: *port
-    ingress:
+    route:
       app:
-        className: internal
-        annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Downloads
-          gethomepage.dev/name: Radarr
-          gethomepage.dev/icon: radarr
-          gethomepage.dev/description: Movie Downloads
-          gethomepage.dev/widget.type: radarr
-          gethomepage.dev/widget.url: http://radarr.downloads
-          gethomepage.dev/widget.key: "{{ `{{HOMEPAGE_VAR_RADARR_TOKEN}}` }}"
-          nginx.ingress.kubernetes.io/configuration-snippet: ${THEME_PARK_SNIPPET}
-        hosts:
-          - host: "radarr.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames: ["{{ .Release.Name }}.devilfruitlabs.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
+                namespace: downloads
     persistence:
       config:
         existingClaim: *app
