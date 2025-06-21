@@ -94,19 +94,11 @@ spec:
         type: emptyDir
       incomplete:
         type: emptyDir
-      applications:
-        existingClaim: cifs-applications
-        globalMounts:
-          - path: /media/applications
       downloads:
         existingClaim: cifs-downloads
         globalMounts:
           - path: /downloads
             subPath: sabnzbd
-      games:
-        existingClaim: cifs-games
-        globalMounts:
-          - path: /media/games
       misc:
         existingClaim: cifs-misc
         globalMounts:
