@@ -92,7 +92,7 @@ spec:
       tmp:
         type: emptyDir
       incomplete:
-        type: emptyDir
+        existingClaim: incomplete
       downloads:
         existingClaim: cifs-downloads
         globalMounts:
