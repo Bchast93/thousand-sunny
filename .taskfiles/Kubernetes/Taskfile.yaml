@@ -21,10 +21,11 @@ tasks:
         helmreleases
         certificates
         certificaterequests
-        httproutes
-        pods
         services
         pvc
+        httproutes
+        pods
+
 
   kubeconform:
     desc: Validate Kubernetes manifests with kubeconform
