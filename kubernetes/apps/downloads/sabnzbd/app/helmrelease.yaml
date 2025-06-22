@@ -90,9 +90,9 @@ spec:
       config:
         existingClaim: *app
       tmp:
-        existingClaim: *app
+        existingClaim: sabnzbd0-tmp
       incomplete:
-        existingClaim: *app
+        existingClaim: sabnzbd0-incomplete
       downloads:
         existingClaim: cifs-downloads
         globalMounts:

@@ -2,10 +2,21 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: incomplete
+  name: sabnzbd-incomplete
 spec:
   accessModes: ["ReadWriteOnce"]
   resources:
     requests:
       storage: 200Gi
-  storageClassName: openebs
+  storageClassName: ceph-block
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sabnzbd-tmp
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 150Gi
+  storageClassName: ceph-block

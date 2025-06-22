@@ -24,8 +24,8 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      VOLSYNC_CAPACITY: 100Mi
-      VOLSYNC_CACHE_CAPACITY: 100Mi
+      VOLSYNC_CAPACITY: 200Gi
+      VOLSYNC_CACHE_CAPACITY: 500Mi
     substituteFrom:
       - name: cluster-secrets
         kind: Secret
