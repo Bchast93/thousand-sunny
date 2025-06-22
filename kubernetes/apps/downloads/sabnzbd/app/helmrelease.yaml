@@ -90,9 +90,9 @@ spec:
       config:
         existingClaim: *app
       tmp:
-        type: emptyDir
+        existingClaim: *app
       incomplete:
-        existingClaim: incomplete
+        existingClaim: *app
       downloads:
         existingClaim: cifs-downloads
         globalMounts:
