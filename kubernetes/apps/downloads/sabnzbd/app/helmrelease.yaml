@@ -67,8 +67,7 @@ spec:
         runAsNonRoot: true
         runAsUser: 1000
         runAsGroup: 100
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
+        fsGroup: 100
     service:
       app:
         controller: *app
