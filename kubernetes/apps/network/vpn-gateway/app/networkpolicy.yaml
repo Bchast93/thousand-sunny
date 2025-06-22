@@ -50,6 +50,8 @@ spec:
         - fields:
             - type: 8
               family: IPv4
+            - type: 0
+              family: IPv4
 ---
 # This policy allows inbound connections to the vpn-gateway on port 80 to gluetun http_control_server
 apiVersion: cilium.io/v2
