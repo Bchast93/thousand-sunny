@@ -3,27 +3,25 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app plex
+  name: &app overseerr
   namespace: &namespace media
 spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   components:
+    - ../../../../components/gatus/external
     - ../../../../components/volsync
   dependsOn:
-    - name: cifs-pvcs-media
-      namespace: media
     - name: volsync
       namespace: volsync-system
   interval: 30m
-  path: ./kubernetes/apps/media/plex/app
+  path: ./kubernetes/apps/media/overseerr/app
   postBuild:
     substitute:
       APP: *app
-      NAMESPACE: *namespace
-      VOLSYNC_CAPACITY: 100Gi
-      VOLSYNC_CACHE_CAPACITY: 40Gi
+      VOLSYNC_CAPACITY: 1Gi
+      GATUS_SUBDOMAIN: requests
     substituteFrom:
       - kind: ConfigMap
         name: cluster-settings
