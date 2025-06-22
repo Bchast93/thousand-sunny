@@ -136,9 +136,9 @@ spec:
               - path: /config
                 subPath: transmission-config
       incomplete:
-#        storageClass: openebs
+        storageClass: openebs
         accessMode: ReadWriteOnce
-        size: 100Gi
+        size: 30Gi
         advancedMounts:
           flood:
             app:
