@@ -136,7 +136,7 @@ spec:
               - path: /config
                 subPath: transmission-config
       incomplete:
-        storageClass: openebs
+        storageClass: ceph-block
         accessMode: ReadWriteOnce
         size: 30Gi
         advancedMounts:
