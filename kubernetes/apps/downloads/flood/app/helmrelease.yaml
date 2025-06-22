@@ -135,10 +135,8 @@ spec:
             transmission:
               - path: /config
                 subPath: transmission-config
-      incomplete:
-        storageClass: ceph-block
-        accessMode: ReadWriteOnce
-        size: 30Gi
+      flood-incomplete:
+        existingClaim: flood-incomplete
         advancedMounts:
           flood:
             app:
