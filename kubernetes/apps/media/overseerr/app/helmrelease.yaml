@@ -87,7 +87,9 @@ spec:
         globalMounts:
           - path: /app/config
       cache:
-        existingClaim: overseerr-cache
+        storageClass: openebs
+        accessMode: ReadWriteOnce
+        size: 15Gi
         globalMounts:
           - path: /app/config/cache
       logs:
