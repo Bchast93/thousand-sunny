@@ -16,7 +16,7 @@ endpoints:
       - type: pushover
   - name: "${APP}"
     group: internal
-    url: "https://${GATUS_SUBDOMAIN:-${APP}}.${SECRET_DOMAIN}${GATUS_PATH:=/}"
+    url: "https://${GATUS_SUBDOMAIN:-${APP}}.devilfruitlabs.com${GATUS_PATH:=/}"
     interval: 1m
     conditions:
       - "[STATUS] == ${GATUS_STATUS:=200}"
