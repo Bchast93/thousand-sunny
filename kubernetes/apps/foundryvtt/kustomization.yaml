@@ -7,4 +7,4 @@ components:
   - ../../components/common
 resources:
   - ./drakkenheim/ks.yaml
-  - ./5etools/ks.yaml
+  - ./dnd-tools/ks.yaml
