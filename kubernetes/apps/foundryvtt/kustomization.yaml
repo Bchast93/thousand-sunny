@@ -8,4 +8,4 @@ components:
 resources:
   - ./drakkenheim/ks.yaml
   - ./dnd-tools/ks.yaml
-  - ./dnd2014-tools/ks.yaml
+  # - ./dnd2014-tools/ks.yaml
