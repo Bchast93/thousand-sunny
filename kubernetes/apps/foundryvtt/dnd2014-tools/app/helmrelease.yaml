@@ -36,6 +36,19 @@ spec:
                 cpu: 50m
               limits:
                 memory: 500Mi
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /
+                    port: &port 80
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
     defaultPodOptions:
       hostname: *app
       securityContext:
@@ -48,7 +61,7 @@ spec:
       app:
         ports:
           http:
-            port: &port 80
+            port: *port
     serviceMonitor:
       app:
         endpoints:
