@@ -37,7 +37,7 @@ spec:
         rules:
           - backendRefs:
               - identifier: app
-                port: 80
+                port: 9001
                 namespace: flux-system
     networkPolicy:
       create: false
