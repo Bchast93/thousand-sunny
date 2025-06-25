@@ -27,18 +27,6 @@ spec:
       create: true
       createSecret: false
       username: admin
-    route:
-      app:
-        hostnames: ["gitops.devilfruitlabs.com"]
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: 9001
-                namespace: flux-system
     networkPolicy:
       create: false
     metrics:
