@@ -15,3 +15,7 @@ spec:
         - name: kubernetes-dashboard-kong-proxy
           namespace: observability
           port: 443
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
