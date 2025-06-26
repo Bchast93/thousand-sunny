@@ -13,14 +13,19 @@ spec:
         kind: HelmRepository
         name: kubernetes-dashboard
         namespace: flux-system
-      interval: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
+    app:
+      image:
+        pullPolicy: IfNotPresent
     metricsScraper:
       enabled: true
-    app:
-      env:
-        TZ: "${TIMEZONE}"
-      extraArgs:
-        - --enable-skip-login
-        - --disable-settings-authorizer
-        - --token-ttl=43200 # seconds time to expire
