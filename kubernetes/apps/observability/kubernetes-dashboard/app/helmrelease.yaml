@@ -15,24 +15,13 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    app:
-      image:
-        pullPolicy: IfNotPresent
-    api:
-    #   containers:
-    #   # https://github.com/kubernetes/dashboard/blob/master/docs/common/arguments.md
-        args:
-    #       # When enabled, the skip button on the login page will be shown.
-          - --enable-skip-login
-    #       # When enabled, Dashboard settings page will not require user to be logged in and authorized to access settings page.
-    #       - --disable-settings-authorizer
-    #       # When enabled, Dashboard login view will also be shown when Dashboard is not served over HTTPS.
-    #       - --enable-insecure-login
     metricsScraper:
       enabled: true
-    nginx:
-      enabled: false
-    cert-manager:
-      enabled: false
-    metrics-server:
-      enabled: false
+    app:
+      env:
+        TZ: "${TIMEZONE}"
+      extraArgs:
+        - --enable-skip-login
+        - --disable-settings-authorizer
+        - --enable-insecure-login
+        - --token-ttl=43200 # seconds time to expire
