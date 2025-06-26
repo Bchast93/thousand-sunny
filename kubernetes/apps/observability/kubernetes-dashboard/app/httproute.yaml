@@ -13,9 +13,5 @@ spec:
   rules:
     - backendRefs:
         - name: kubernetes-dashboard
-          namespace: flux-system
-          port: 8443
-      matches:
-        - path:
-            type: PathPrefix
-            value: /
+          namespace: observability
+          port: 443
