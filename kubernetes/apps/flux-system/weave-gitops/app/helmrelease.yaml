@@ -52,15 +52,3 @@ spec:
       app:
         endpoints:
           - port: http
-    route:
-      app:
-        hostnames: ["gitops.devilfruitlabs.com"]
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
-                namespace: flux-system
