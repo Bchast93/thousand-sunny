@@ -15,3 +15,7 @@ spec:
         - name: weave-gitops
           namespace: flux-system
           port: 9001
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
