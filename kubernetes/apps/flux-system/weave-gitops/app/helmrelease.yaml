@@ -43,3 +43,24 @@ spec:
         memory: 70Mi
       limits:
         memory: 210Mi
+    service:
+      app:
+        ports:
+          http:
+            port: &port 9001
+    serviceMonitor:
+      app:
+        endpoints:
+          - port: http
+    route:
+      app:
+        hostnames: ["gitops.devilfruitlabs.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
+                namespace: flux-system
