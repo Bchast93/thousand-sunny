@@ -12,3 +12,4 @@ resources:
   - ./crunchydata.yaml
   - ./angelnu-charts.yaml
   - ./weave-gitops.yaml
+  - ./kubernetes-dashboard.yaml
