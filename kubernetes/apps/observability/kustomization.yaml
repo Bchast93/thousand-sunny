@@ -17,4 +17,4 @@ resources:
   - ./smartctl-exporter/ks.yaml
   - ./unpoller/ks.yaml
   - ./tautulli/ks.yaml
-  # - ./kubernetes-dashboard/ks.yaml
+  - ./kubernetes-dashboard/ks.yaml
