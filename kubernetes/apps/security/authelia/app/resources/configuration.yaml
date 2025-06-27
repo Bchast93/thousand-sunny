@@ -83,8 +83,7 @@ duo_api:
 identity_providers:
   oidc:
     jwks:
-      - key: |
-          {{ secret "/app/secrets/OIDC_JWKS_KEY_PEM" | mindent 10 "|" | msquote }}
+      - key_file: /app/secrets/OIDC_JWKS_KEY_PEM
     claims_policies:
       default:
         id_token: ['groups', 'email', 'email_verified', 'alt_emails', 'preferred_username', 'name']
