@@ -36,6 +36,7 @@
     ```shell
     k -n security exec authelia-69bc444d56-pcnb7 -- authelia crypto rand --length 72 --charset rfc3986
     ```
+docker run --rm authelia/authelia:latest authelia crypto hash generate pbkdf2 --variant sha512 --random
 
 8. CLIENT_SECRET : XXX #random 72+ pass
     ```shell
