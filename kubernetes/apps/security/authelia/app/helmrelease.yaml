@@ -135,9 +135,7 @@ spec:
         advancedMounts:
           authelia:
             app:
-              - path: /app/secrets/OIDC_JWKS_KEY_PEM
-                subPath: OIDC_JWKS_KEY_PEM
-                readOnly: true
+              - path: /app/secrets
       trusted-certs:
         type: configMap
         name: letsencrypt-certs
