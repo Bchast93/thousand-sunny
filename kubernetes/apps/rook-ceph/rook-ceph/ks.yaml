@@ -40,6 +40,8 @@ spec:
       namespace: *namespace
     - name: volsync
       namespace: volsync-system
+    - name: external-secrets
+      namespace: external-secrets
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
