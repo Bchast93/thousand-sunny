@@ -7,8 +7,8 @@ components:
   - ../../components/common
 resources:
   - ./cifs-pvcs/ks.yaml
-  # - ./flaresolverr/ks.yaml
-  - ./flood/ks.yaml
+  - ./flaresolverr/ks.yaml
+  # - ./flood/ks.yaml
   - ./prowlarr/ks.yaml
   - ./radarr/ks.yaml
   - ./sabnzbd/ks.yaml
