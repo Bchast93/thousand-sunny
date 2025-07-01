@@ -7,5 +7,3 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./csi-driver-smb/ks.yaml
-  - ./snapshot-controller/ks.yaml
-
