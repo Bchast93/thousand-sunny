@@ -6,6 +6,6 @@ namespace: foundryvtt
 components:
   - ../../components/common
 resources:
-  - ./drakkenheim/ks.yaml
+  # - ./drakkenheim/ks.yaml
   - ./dnd-tools/ks.yaml
   - ./dnd2014-tools/ks.yaml
