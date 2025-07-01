@@ -1,0 +1,19 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.1-standalone-strict/configmap-v1.json
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-settings
+data:
+  TIMEZONE: US/Central
+  CLUSTER_CIDR: 10.69.0.0/16
+  SERVICE_CIDR: 10.96.0.0/16
+  LAN_CIDR: 10.100.150.0/23
+  CILIUM_CIDR: 10.43.0.0/16
+
+  VOLSYNC_S3_BUCKET: "kube"
+
+  SVC_POSTGRES_ADDR: 10.100.151.35
+
+  SVC_VPN_ADDR: 10.100.151.37
+  SVC_PLEX_ADDR: 10.100.151.38

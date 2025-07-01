@@ -12,16 +12,20 @@ vars:
   TALOS_DIR: '{{.ROOT_DIR}}/talos'
   PRIVATE_DIR: '{{.ROOT_DIR}}/.private'
   TALOSCONFIG: '{{.ROOT_DIR}}/talos/clusterconfig/talosconfig'
+  SOPS_CONFIG_FILE: "{{.ROOT_DIR}}/.sops.yaml"
 
 env:
   KUBECONFIG: '{{.ROOT_DIR}}/kubeconfig'
   SOPS_AGE_KEY_FILE: '{{.ROOT_DIR}}/age.key'
   TALOSCONFIG: '{{.TALOSCONFIG}}'
+  SOPS_AGE_KEY_FILE: "{{.AGE_FILE}}"
 
 includes:
   bootstrap: .taskfiles/bootstrap
   talos: .taskfiles/talos
   template: .taskfiles/template
+  kubernetes: .taskfiles/Kubernetes
+  flux: .taskfiles/Flux
 
 tasks:
 
