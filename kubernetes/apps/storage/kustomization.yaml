@@ -6,6 +6,6 @@ kind: Kustomization
 #   - ../../components/common
 resources:
   - ./namespace.yaml
-  # - ./csi-driver-smb/ks.yaml
-  # - ./snapshot-controller/ks.yaml
+  - ./csi-driver-smb/ks.yaml
+  - ./snapshot-controller/ks.yaml
 
