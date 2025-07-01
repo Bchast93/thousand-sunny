@@ -87,7 +87,7 @@ spec:
         globalMounts:
           - path: /app/config
       cache:
-        storageClass: openebs
+        storageClass: openebs-hostpath
         accessMode: ReadWriteOnce
         size: 15Gi
         globalMounts:
