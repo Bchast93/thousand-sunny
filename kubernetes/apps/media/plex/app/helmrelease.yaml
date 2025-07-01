@@ -110,7 +110,7 @@ spec:
       config:
         existingClaim: plex-config
       cache:
-        storageClass: openebs-hostpath
+        storageClass: openebs
         accessMode: ReadWriteOnce
         size: 10Gi
         globalMounts:
