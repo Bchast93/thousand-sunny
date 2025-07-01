@@ -21,6 +21,7 @@ spec:
     substitute:
       APP: *app
       VOLSYNC_CAPACITY: 15Gi
+      VOLSYNC_CACHE_CAPACITY: 10Gi
       GATUS_SUBDOMAIN: requests
     substituteFrom:
       - kind: ConfigMap

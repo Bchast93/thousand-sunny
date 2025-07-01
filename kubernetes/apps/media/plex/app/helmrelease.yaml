@@ -108,7 +108,7 @@ spec:
                 port: *port
     persistence:
       config:
-        existingClaim: *app
+        existingClaim: plex-config
       cache:
         storageClass: openebs
         accessMode: ReadWriteOnce

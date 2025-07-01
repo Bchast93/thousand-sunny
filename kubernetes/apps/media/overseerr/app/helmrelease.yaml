@@ -83,7 +83,7 @@ spec:
                 port: *port
     persistence:
       config:
-        existingClaim: *app
+        existingClaim: overseerr-config
         globalMounts:
           - path: /app/config
       cache:
