@@ -2,10 +2,10 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: foundryvtt
+namespace: media
 components:
   - ../../components/common
 resources:
-  - ./drakkenheim/ks.yaml
-  # - ./dnd-tools/ks.yaml
-  # - ./dnd2014-tools/ks.yaml
+  - ./cifs-pvcs/ks.yaml
+  - ./plex/ks.yaml
+  - ./overseerr/ks.yaml
