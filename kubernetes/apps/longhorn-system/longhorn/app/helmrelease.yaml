@@ -39,15 +39,3 @@ spec:
     metrics:
       serviceMonitor:
         enabled: true
-    route:
-      app:
-        hostnames: ["{{ .Release.Name }}.devilfruitlabs.com"]
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: longhorn-frontend
-                port: 80
-                namespace: longhorn-system
