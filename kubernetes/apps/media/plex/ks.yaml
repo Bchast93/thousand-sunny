@@ -23,8 +23,6 @@ spec:
       APP: *app
       NAMESPACE: *namespace
       VOLSYNC_CAPACITY: 100Gi
-      VOLSYNC_CLAIM: plex-config
-      VOLSYNC_CACHE_CAPACITY: 80Gi
     substituteFrom:
       - kind: ConfigMap
         name: cluster-settings
