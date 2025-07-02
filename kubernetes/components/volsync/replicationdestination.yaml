@@ -3,9 +3,7 @@
 apiVersion: volsync.backube/v1alpha1
 kind: ReplicationDestination
 metadata:
-  name: "${APP}-dst"
-  labels:
-    kustomize.toolkit.fluxcd.io/ssa: IfNotPresent
+  name: "${APP}-bootstrap"
 spec:
   trigger:
     manual: restore-once
@@ -23,6 +21,3 @@ spec:
       runAsUser: ${VOLSYNC_PUID:=568}
       runAsGroup: ${VOLSYNC_PGID:=568}
       fsGroup: ${VOLSYNC_PGID:=568}
-    enableFileDeletion: true
-    cleanupCachePVC: true
-    cleanupTempPVC: true
