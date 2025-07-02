@@ -39,10 +39,6 @@ spec:
     metrics:
       serviceMonitor:
         enabled: true
-    serviceMonitor:
-      app:
-        endpoints:
-          - port: http
     route:
       app:
         hostnames: ["{{ .Release.Name }}.devilfruitlabs.com"]
