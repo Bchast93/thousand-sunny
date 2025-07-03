@@ -8,4 +8,4 @@ components:
 resources:
   - ./cifs-pvcs/ks.yaml
   - ./plex/ks.yaml
-  # - ./overseerr/ks.yaml
+  - ./overseerr/ks.yaml
