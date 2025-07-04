@@ -16,5 +16,5 @@ resources:
   - ./silence-operator/ks.yaml
   - ./smartctl-exporter/ks.yaml
   - ./unpoller/ks.yaml
-  - ./tautulli/ks.yaml
+  # - ./tautulli/ks.yaml
   # - ./kubernetes-dashboard/ks.yaml
