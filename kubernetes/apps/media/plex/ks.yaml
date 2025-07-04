@@ -25,6 +25,7 @@ spec:
       NAMESPACE: *namespace
       VOLSYNC_CAPACITY: 80Gi
       VOLSYNC_CACHE_CAPACITY: 40Gi
+      GATUS_PATH: /web
     substituteFrom:
       - kind: ConfigMap
         name: cluster-settings
