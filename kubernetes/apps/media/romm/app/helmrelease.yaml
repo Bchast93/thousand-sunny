@@ -1,0 +1,98 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app romm
+  namespace: &namespace media
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    controllers:
+      romm:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/rommapp/romm
+              tag: 3.8.1@sha256:9a732c9efb4ea70d6cc5818c7d732a4a990fd06b3e1e90600023459942270463
+            env:
+              TZ: "${TIMEZONE}"
+              DISABLE_DOWNLOAD_ENDPOINT_AUTH: true
+              DISABLE_USERPASS_LOGIN: true # only set to true after first run and admin has been created
+              ENABLE_SCHEDULED_RESCAN: true
+              SCHEDULED_RESCAN_CRON: "0 3 * * *"
+              ROMM_DB_DRIVER: postgresql
+              REDIS_HOST: dragonfly.database.svc.cluster.local
+              REDIS_PORT: 6379
+              REDIS_DB: 11
+            envFrom:
+              - secretRef:
+                  name: *app
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 4Gi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 100
+        fsGroup: 100
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: *app
+        ports:
+          http:
+            port: &port 8080
+    route:
+      app:
+        hostnames: ["{{ .Release.Name }}.devilfruitlabs.com"]
+        parentRefs:
+          - name: internal
+            namespace: kube-system
+            sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
+                namespace: *namespace
+    persistence:
+      data:
+        existingClaim: *app
+        advancedMounts:
+          romm:
+            app:
+              - subPath: "resources"
+                path: "/romm/resources"
+              - subPath: "assets"
+                path: "/romm/assets"
+      config:
+        type: emptyDir
+        globalMounts:
+          - path: /romm/config
+      tmp:
+        type: emptyDir
+      games:
+        existingClaim: cifs-games
+        globalMounts:
+          - path: /romm/library
+            subPath: romm

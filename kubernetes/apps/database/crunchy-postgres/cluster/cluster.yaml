@@ -84,6 +84,10 @@ spec:
       databases: [sonarr_main]
       password: *pw
 
+    - name: &db romm
+      databases: [*db]
+      password: *pw
+
   backups:
     pgbackrest:
       configuration: &backupConfig
