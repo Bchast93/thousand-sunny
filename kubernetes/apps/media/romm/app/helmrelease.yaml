@@ -21,6 +21,8 @@ spec:
   values:
     controllers:
       romm:
+        pod:
+          enableServiceLinks: false
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
@@ -73,7 +75,7 @@ spec:
         rules:
           - backendRefs:
               - identifier: app
-                port: *port
+                port: 8080
                 namespace: *namespace
     persistence:
       data:
