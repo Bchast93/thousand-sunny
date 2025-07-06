@@ -35,7 +35,6 @@ spec:
               ENABLE_SCHEDULED_RESCAN: true
               SCHEDULED_RESCAN_CRON: "0 3 * * *"
               ROMM_DB_DRIVER: postgresql
-              ROMM_PORT: &port 8080
               REDIS_HOST: dragonfly.database.svc.cluster.local
               REDIS_PORT: 6379
               REDIS_DB: 11
@@ -63,14 +62,14 @@ spec:
         controller: *app
         ports:
           http:
-            port: *port
+            port: 8080
     route:
       app:
         hostnames: ["{{ .Release.Name }}.devilfruitlabs.com"]
         parentRefs:
           - name: internal
             namespace: kube-system
-            sectionName: https
+            sectionName: http
         rules:
           - backendRefs:
               - identifier: app
