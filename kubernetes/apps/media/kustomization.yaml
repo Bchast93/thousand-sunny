@@ -9,4 +9,4 @@ resources:
   - ./cifs-pvcs/ks.yaml
   - ./plex/ks.yaml
   - ./overseerr/ks.yaml
-  # - ./romm/ks.yaml
+  - ./romm/ks.yaml
