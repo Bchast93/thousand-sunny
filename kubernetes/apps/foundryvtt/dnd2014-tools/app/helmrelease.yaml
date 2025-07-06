@@ -30,7 +30,7 @@ spec:
           app:
             image:
               repository: ghcr.io/5etools-mirror-3/5etools-2014-src
-              tag: 1.210.43
+              tag: 1.210.45
             resources:
               requests:
                 cpu: 50m
