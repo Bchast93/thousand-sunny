@@ -6,6 +6,7 @@ namespace: downloads
 components:
   - ../../components/common
 resources:
+  - ./bazarr/ks.yaml
   - ./cifs-pvcs/ks.yaml
   - ./flaresolverr/ks.yaml
   - ./flood/ks.yaml
