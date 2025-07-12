@@ -89,10 +89,6 @@ spec:
     persistence:
       config:
         existingClaim: *app
-      tmp:
-        existingClaim: sabnzbd-tmp
-      incomplete:
-        existingClaim: sabnzbd-incomplete
       downloads:
         existingClaim: cifs-downloads
         globalMounts:
