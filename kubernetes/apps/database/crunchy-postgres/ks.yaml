@@ -9,72 +9,29 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  interval: 30m
-  path: ./kubernetes/apps/database/crunchy-postgres/app
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-    namespace: flux-system
-  targetNamespace: *namespace
-  timeout: 5m
-  wait: true
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: &app crunchy-postgres-cluster
-  namespace: &namespace database
-spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
   dependsOn:
-    - name: crunchy-postgres-operator
-      namespace: database
-    - name: external-secrets
+    - name: external-secrets-stores
       namespace: external-secrets
-    - name: openebs
-      namespace: openebs-system
-  interval: 30m
-  path: ./kubernetes/apps/database/crunchy-postgres/cluster
-  postBuild:
-    substituteFrom:
-      - name: cluster-secrets
-        kind: Secret
-      - name: cluster-settings
-        kind: ConfigMap
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: *app
+      namespace: *namespace
+  healthCheckExprs:
+    - apiVersion: external-secrets.io/v1
+      kind: ExternalSecret
+      failed: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'False')
+      current: status.conditions.filter(e, e.type == 'Ready').all(e, e.status == 'True')
+  interval: 1h
+  path: ./kubernetes/apps/database/crunchy-postgres/operator
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
   targetNamespace: *namespace
   timeout: 5m
-  wait: true
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: &app crunchy-postgres-userinit
-  namespace: &namespace database
-spec:
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
-  dependsOn:
-    - name: crunchy-postgres-cluster
-      namespace: database
-  interval: 30m
-  path: ./kubernetes/apps/database/crunchy-postgres/userinit
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
-    namespace: flux-system
-  targetNamespace: *namespace
-  timeout: 5m
-  wait: true
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -85,23 +42,29 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  components:
-    - ../../../../components/gatus/guarded
+#  components:
+#    - ../../../../components/gatus/guarded
   dependsOn:
-    - name: crunchy-postgres-cluster
+    - name: crunchy-postgres-operator
       namespace: database
-    - name: external-secrets
-      namespace: external-secrets
-  interval: 30m
+  healthCheckExprs:
+    - apiVersion: postgres-operator.crunchydata.com/v1beta1
+      kind: PostgresCluster
+      failed: status.conditions.filter(e, e.type == 'ProxyAvailable').all(e, e.status == 'False')
+      current: status.conditions.filter(e, e.type == 'ProxyAvailable').all(e, e.status == 'True')
+  interval: 1h
   path: ./kubernetes/apps/database/crunchy-postgres/pgadmin
   postBuild:
+    substituteFrom:
+      - name: *app
+        kind: Secret
     substitute:
       APP: *app
   prune: true
+  retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
   targetNamespace: *namespace
   timeout: 5m
-  wait: false

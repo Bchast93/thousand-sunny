@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+# yaml-language-server: $schema=https://kube-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
@@ -15,7 +15,7 @@ spec:
       name: *app
       namespace: *namespace
   interval: 1h
-  path: ./kubernetes/apps/kube-system/intel-device-plugin-operator/app
+  path: ./kubernetes/apps/kube-system/intel-device-plugin/operator
   prune: true
   retryInterval: 2m
   sourceRef:
@@ -25,7 +25,6 @@ spec:
   targetNamespace: *namespace
   timeout: 5m
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
@@ -45,14 +44,14 @@ spec:
       namespace: *namespace
     - apiVersion: deviceplugin.intel.com/v1
       kind: GpuDevicePlugin
-      name: i915
+      name: intel-device-plugin-gpu
   healthCheckExprs:
     - apiVersion: deviceplugin.intel.com/v1
       kind: GpuDevicePlugin
       failed: status.desiredNumberScheduled != status.numberReady
       current: status.desiredNumberScheduled == status.numberReady
   interval: 1h
-  path: ./kubernetes/apps/kube-system/intel-device-plugin-operator/gpu
+  path: ./kubernetes/apps/kube-system/intel-device-plugin/gpu
   prune: true
   retryInterval: 2m
   sourceRef:

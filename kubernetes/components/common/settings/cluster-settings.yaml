@@ -1,0 +1,44 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.32.1-standalone-strict/configmap-v1.json
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-settings
+data:
+  TIMEZONE: "US/Central"
+  CLUSTER_CIDR: "10.69.0.0/16"
+  SERVICE_CIDR: "10.96.0.0/16"
+  LAN_CIDR: "10.100.150.0/23"
+  CILIUM_CIDR: "10.43.0.0/16"
+
+  # CLUSTER_CIDR: "10.42.0.0/16"
+  # SERVICE_CIDR: "10.43.0.0/16"
+  # LAN_CIDR: "10.0.150.128/25"
+  # CLUSTER_API_ADDR: "10.0.150.200"
+  # CLOUDFLARE_GATEWAY_ADDR: "10.0.150.130"
+  # CLUSTER_GATEWAY_ADDR: "10.0.150.131"
+  # CLUSTER_DNS_GATEWAY_ADDR: "10.0.150.132"
+
+  VOLSYNC_S3_BUCKET: "kube"
+
+  GIT_REPO: "github.com/brunnels/talos-cluster"
+  GIT_REPO_REF: "refs/heads/ms01"
+  INGRESS_SECURE_PATH: "spec/values/ingress/app/annotations"
+
+
+  # VOLSYNC_PVC_STORAGECLASS: "ceph-block"
+  # VOLSYNC_SNAPSHOTCLASS: "csi-ceph-blockpool"
+  # VOLSYNC_CACHE_SNAPSHOTCLASS: "ceph-block"
+  # VOLSYNC_STORAGECLASS: "ceph-block"
+  # VOLSYNC_S3_BUCKET: "kdev_volsync"
+
+  SVC_POSTGRES_ADDR: 10.100.151.35
+
+  SVC_VPN_ADDR: 10.100.151.37
+  SVC_PLEX_ADDR: 10.100.151.38
+
+
+  THEME_PARK_SNIPPET: >
+    proxy_set_header Accept-Encoding "";
+    sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/{{ .Release.Name }}/${THEME_PARK_THEME}.css"></head>';
+    sub_filter_once on;

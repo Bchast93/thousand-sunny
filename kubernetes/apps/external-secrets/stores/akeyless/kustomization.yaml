@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - ./clustersecretstore.yaml
   - ./secret.sops.yaml
+  - ./externalsecret.yaml

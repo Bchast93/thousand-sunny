@@ -5,13 +5,12 @@ kind: Kustomization
 resources:
   - ./externalsecret.yaml
   - ./helmrelease.yaml
-  - ./secretstore.yaml
 configMapGenerator:
   - name: authelia
     files:
       - configuration.yaml=./resources/configuration.yaml
   - name: letsencrypt-certs
     files:
-      - letsencrypt-certs.pem=../../../../components/common/certs/letsencrypt-certs.pem
+      - letsencrypt-certs.pem=../../../../shared/certs/letsencrypt-certs.pem
 generatorOptions:
   disableNameSuffixHash: true
